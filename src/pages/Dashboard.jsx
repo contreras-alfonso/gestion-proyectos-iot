@@ -37,7 +37,7 @@ export const Dashboard = () => {
             ))}
         </div>
 
-        <div className='p-7 bg-white rounded-lg shadow-lg w-full'>
+        <div className='p-7 bg-white rounded-lg shadow w-full'>
             <div className='mb-5 flex items-center justify-between'>
                 <h2 className='font-semibold'>Best Seller</h2>
                 <div className='flex'>

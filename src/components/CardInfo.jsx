@@ -4,7 +4,7 @@ import CountUp from 'react-countup';
 export const CardInfo = ({info}) => {
     const {text,numberMax,simbol,bgColor,icon} = info;
   return (
-    <div className='bg-white w-96 p-10 rounded-lg flex flex-col gap-5 shadow-lg'>
+    <div className='bg-white w-96 p-10 rounded-lg flex flex-col gap-5 shadow'>
         <div className='flex justify-between items-center gap-5'>
             <div className='flex flex-col gap-2'>
                 <span className='text-3xl font-bold'><CountUp duration={4} end={numberMax} />{simbol}</span>
