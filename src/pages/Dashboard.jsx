@@ -1,30 +1,102 @@
 import React, { useEffect, useState } from 'react'
-import CountUp from 'react-countup';
 import { Navegacion } from '../components/Navegacion';
+import { CardInfo } from '../components/CardInfo';
 
 export const Dashboard = () => {
 
-    const secciones = ["Dashboard","Layouts","Changelog","Email","Chat"]
+    const infCards = [
+        {
+            text: 'Total Plants',
+            numberMax: 8,
+            simbol: '+',
+            bgColor: 'bg-emerald-100',
+            icon: <i className="fa-sharp fa-regular fa-leaf text-emerald-500"></i>,
+        },
+        {
+            text: 'The weather',
+            numberMax: 38,
+            simbol: '°C',
+            bgColor: 'bg-blue-100',
+            icon: <i className="fa-regular fa-cloud text-blue-500"></i>,
+        },
+        {
+            text: 'The reporters',
+            numberMax: 18232,
+            simbol: '+',
+            bgColor: 'bg-pink-100',
+            icon: <i className="fa-regular fa-circle-exclamation text-pink-500"></i>,
+        }
+    ]
 
   return (
-    <div className='bg-color-bg h-screen flex'>
-
-        <Navegacion secciones={secciones}/>
-
-        <div className='p-10'>
-            <h1 className='text-xl font-black mb-5 uppercase'>Dashboard</h1>
-            <div className='bg-white w-96 p-10 rounded-lg flex flex-col gap-5'>
-                <div className='flex justify-between items-center gap-5'>
-                    <div className='flex flex-col gap-2'>
-                        <span className='text-3xl font-bold'><CountUp duration={4} end={100} />+</span>
-                        <p className='text-sm'>Total Products</p>
-                        
-                    </div>
-                    <span className='w-1 h-1 px-7 py-6 rounded-2xl bg-violet-100 text-violet-600 text-2xl flex items-center justify-center'><i class="fa-regular fa-suitcase-rolling"></i></span>
-                </div>
-                <p className='text-emerald-500 font-bold text-sm'><i class="fa-solid fa-arrow-up"></i> 25.36% <span className='text-gray-600 font-normal text-xs'>Since last month</span></p>
-            </div>
+    <>
+        <h1 className='text-xl font-black mb-5 uppercase'>Dashboard</h1>
+        <div className='flex gap-5 mb-5'>
+            {infCards.map(e=>(
+                <CardInfo key={e.text} info={e}/>
+            ))}
         </div>
-    </div>
+
+        <div className='p-7 bg-white rounded-lg shadow-lg w-full'>
+            <div className='mb-5 flex items-center justify-between'>
+                <h2 className='font-semibold'>Best Seller</h2>
+                <div className='flex'>
+                    <button className='text-xs bg-emerald-100 text-emerald-600 py-2 px-3 rounded-lg'>Today</button>
+                    <button className='text-xs  text-gray-600 py-2 px-3 rounded-lg'>Week</button>
+                    <button className='text-xs text-gray-600 py-2 px-3 rounded-lg'>Month</button>
+                </div>
+            </div>
+
+            <table className='w-full'>
+                <thead>
+                    <tr className=''>
+                        <td className='uppercase text-xs text-gray-600 py-3'>Seller Name</td>
+                        <td className='uppercase text-xs text-gray-600 py-3'>Company</td>
+                        <td className='uppercase text-xs text-gray-600 py-3'>Product</td>
+                        <td className='uppercase text-xs text-gray-600 py-3'>Revenue</td>
+                        <td className='uppercase text-xs text-gray-600 py-3'>Status</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr className=''>
+                        <td className='text-xs font-medium py-3'>Robert Clinton</td>
+                        <td className='text-xs py-3'>Samsung</td>
+                        <td className='text-xs py-3'>Smart Phone</td>
+                        <td className='text-xs py-3'>S/ 38,536</td>
+                        <td className='text-xs py-3'>Done</td>
+                    </tr>
+                    <tr className=''>
+                        <td className='text-xs font-medium py-3'>Robert Clinton</td>
+                        <td className='text-xs py-3'>Samsung</td>
+                        <td className='text-xs py-3'>Smart Phone</td>
+                        <td className='text-xs py-3'>S/ 38,536</td>
+                        <td className='text-xs py-3'>Done</td>
+                    </tr>
+                    <tr className=''>
+                        <td className='text-xs font-medium py-3'>Robert Clinton</td>
+                        <td className='text-xs py-3'>Samsung</td>
+                        <td className='text-xs py-3'>Smart Phone</td>
+                        <td className='text-xs py-3'>S/ 38,536</td>
+                        <td className='text-xs py-3'>Done</td>
+                    </tr>
+                    <tr className=''>
+                        <td className='text-xs font-medium py-3'>Robert Clinton</td>
+                        <td className='text-xs py-3'>Samsung</td>
+                        <td className='text-xs py-3'>Smart Phone</td>
+                        <td className='text-xs py-3'>S/ 38,536</td>
+                        <td className='text-xs py-3'>Done</td>
+                    </tr>
+                    <tr className=''>
+                        <td className='text-xs font-medium py-3'>Robert Clinton</td>
+                        <td className='text-xs py-3'>Samsung</td>
+                        <td className='text-xs py-3'>Smart Phone</td>
+                        <td className='text-xs py-3'>S/ 38,536</td>
+                        <td className='text-xs py-3'>Done</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </>
   )
 }
