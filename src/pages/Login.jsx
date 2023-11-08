@@ -5,17 +5,17 @@ export const Login = () => {
   return (
     <div className='h-screen flex'>
         <div className='w-1/2 flex items-center justify-center'>
-          <form className='flex flex-col gap-5' action="">
+          <form className='flex flex-col gap-5 px-10 max-lg:w-full' action="">
             <div className='space-y-2'>
-              <h1 className='font-semibold text-2xl text-center'>Sign In</h1>
+              <h1 className='font-bold text-3xl text-center'>Sign In</h1>
               <p className='text-gray-400 text-sm font-medium text-center'>Your Social Campains</p>
             </div>
-            <div className='flex gap-2'>
-              <button type='button' className='border border-gray-300 text-gray-600 py-3 px-7 rounded-lg text-sm flex items-center gap-2'>
+            <div className='flex max-lg:flex-col gap-2 w-full'>
+              <button type='button' className='border border-gray-300 text-gray-600 py-3 px-7 rounded-lg text-xs flex items-center justify-center gap-2'>
                 <img src="/images/google-logo.png" className='w-4' alt="logo-google" /> 
                 <span>Sign in With Google</span>
               </button>
-              <button type='button' className='border border-gray-300 text-gray-600 py-3 px-7 rounded-lg text-sm flex items-center gap-2'>
+              <button type='button' className='border border-gray-300 text-gray-600 py-3 px-7 rounded-lg text-xs flex items-center justify-center gap-2'>
                 <img src="/images/facebook-logo.png" className='w-4' alt="logo-google" /> 
                 <span>Sign in With Facebook</span>
               </button>

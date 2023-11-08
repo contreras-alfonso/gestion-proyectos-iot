@@ -9,11 +9,11 @@ export const Navegacion = () => {
     console.log(ruta)
 
   return (
-    <div className='w-80 bg-white py-5 pr-5 shadow-lg'>
-        <div className='flex items-center gap-2 mb-5 ml-3'>
+    <div className='w-80 bg-white py-10 pr-5 shadow-lg'>
+        {/* <div className='flex items-center gap-2 mb-5 ml-3'>
             <img src="/images/logo2.png" className='rounded-full h-14' alt="w" />
             <h2 className='uppercase text-sm leading-4'>Vivero la casa de plantas y flores</h2>
-        </div>
+        </div> */}
 
         <ul className='text-sm font-medium flex flex-col gap-1'>
             {rutasNavegacion.map(e=>(
