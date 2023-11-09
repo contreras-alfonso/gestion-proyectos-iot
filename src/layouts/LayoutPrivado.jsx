@@ -8,7 +8,7 @@ export const LayoutPrivado = () => {
       <div className='bg-color-bg h-screen flex'>
         <Navegacion/>
 
-        <div className='p-10 w-full h-screen overflow-y-scroll'>
+        <div className='w-full h-screen overflow-y-scroll'>
             <Outlet/>
         </div>
       </div>

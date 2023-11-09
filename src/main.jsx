@@ -6,6 +6,7 @@ import { Login } from './pages/Login';
 import { LayoutPublico } from './layouts/LayoutPublico';
 import { Dashboard } from './pages/Dashboard';
 import { LayoutPrivado } from './layouts/LayoutPrivado';
+import { Layouts } from './pages/Layouts';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path:'dashboard',
         element: <Dashboard/>
+      },
+      {
+        path:'layouts',
+        element: <Layouts/>
       }
     ]
   },
