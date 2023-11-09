@@ -30,8 +30,8 @@ export const Dashboard = () => {
 
   return (
     <>
-        <h1 className='text-xl font-black mb-5 uppercase'>Dashboard</h1>
-        <div className='flex gap-5 mb-5'>
+        <h1 className='text-xl uppercase font-black mb-5'>Dashboard</h1>
+        <div className='flex flex-wrap gap-5 mb-5'>
             {infCards.map(e=>(
                 <CardInfo key={e.text} info={e}/>
             ))}

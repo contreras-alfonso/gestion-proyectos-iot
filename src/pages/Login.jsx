@@ -37,10 +37,10 @@ export const Login = () => {
           </form>
         </div>
 
-        <div className='w-1/2 bg-emerald-500 fondo_svg flex flex-col gap-5 items-center justify-center'>
+        <div className='w-1/2 bg-emerald-500 fondo_svg flex flex-col gap-5 items-center justify-center px-10'>
           
           <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/misc/auth-screens.png" className='w-[500px]' alt="" />
-          <h2 className='text-3xl font-black text-white'>Fast, Efficient and Productive</h2>
+          <h2 className='text-3xl font-black text-white text-center'>Fast, Efficient and Productive</h2>
           <p className='text-white w-3/4 text-sm text-center'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo amet explicabo saepe quae <span className='text-yellow-400'>molestias</span> hic praesentium, ratione facere velit, eaque minus. <span className='text-yellow-400'>Laudantium</span> pariatur assumenda facilis id laborum reprehenderit consectetur earum.</p>
           
           
