@@ -139,7 +139,8 @@ export const Dashboard = () => {
                     </tbody>
                 </table>
             </div> */}
-            <ContainerDataTable columns={columns} data={users}/>
+            <ContainerDataTable data={users} columns={columns}/>
+            
         </div>
 
         {spinner && <Spinner/>}
