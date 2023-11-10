@@ -14,21 +14,19 @@
     border-bottom: none; /* Elimina el borde inferior de cada fila */
 }
 
-.jiAnER:not(:last-of-type) {
+.jiAnER:not(:last-of-type), .ePwPKN:not(:last-of-type) {
     border-bottom: none !important; /* Anula la propiedad border-bottom */
 }
 
-.cfvlby{
+.cfvlby,.dkIDck{
     border-bottom: none !important;
 }
 
-.cxFtRn{
+.cxFtRn, .dfpYxD{
     border: none !important;
 }
 
-.koyZDM{
-    
-}
+
 
 .fondo_svg{
     background-color: #007764;
