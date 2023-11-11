@@ -9,7 +9,6 @@ export const Navegacion = () => {
     const { pathname } = useLocation();
     let ruta = pathname.split('/')[2];
     const rutasNavegacion = secciones;
-    console.log(ruta)
 
   return (
     <>
