@@ -3,6 +3,7 @@ import { Navegacion } from '../components/Navegacion';
 import { CardInfo } from '../components/CardInfo';
 import { ContainerDataTable } from '../components/ContainerDataTable';
 import { Spinner } from '../components/Spinner';
+import { SimpleBarChart } from '../components/SimpleBarChart';
 
 export const Dashboard = () => {
     
@@ -74,11 +75,16 @@ export const Dashboard = () => {
 
         <div className='p-10'>
             <h1 className='text-xl uppercase font-black mb-5'>Dashboard</h1>
-            <div className='flex flex-wrap gap-5 mb-5'>
-                {infCards.map(e=>(
-                    <CardInfo key={e.text} info={e}/>
-                ))}
+            <div className='flex  gap-5'>
+                <div className='flex flex-wrap gap-5 mb-5'>
+                    {infCards.map(e=>(
+                        <CardInfo key={e.text} info={e}/>
+                    ))}
+                </div>
+
+                
             </div>
+            <SimpleBarChart/>
 
             {/* <div className='p-7 bg-white rounded-lg shadow w-full'>
                 <div className='mb-5 flex items-center justify-between'>

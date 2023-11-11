@@ -7,6 +7,7 @@ import { LayoutPublico } from './layouts/LayoutPublico';
 import { Dashboard } from './pages/Dashboard';
 import { LayoutPrivado } from './layouts/LayoutPrivado';
 import { Layouts } from './pages/Layouts';
+import { Changelog } from './pages/Changelog';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path:'layouts',
         element: <Layouts/>
+      },
+      {
+        path:'changelog',
+        element: <Changelog/>
       }
     ]
   },

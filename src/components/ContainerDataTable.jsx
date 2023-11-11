@@ -27,7 +27,8 @@ export const ContainerDataTable = ({columns,data}) => {
     };
 
   return (
-    <div className='bg-white p-5 rounded-lg shadow'>
+    <div className='bg-white p-5 mt-5 rounded-lg shadow'>
+        <h2 className='font-semibold text-center mb-5 py-3 rounded-lg'>Tabla humedad</h2>
         <DataTable 
             customStyles={customStyles}
             columns={columns}

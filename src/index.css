@@ -26,6 +26,11 @@
     border: none !important;
 }
 
+.recharts-text{
+    font-size: 14px;
+   
+    font-weight: 500;
+}
 
 
 .fondo_svg{
