@@ -8,6 +8,7 @@ import { Dashboard } from './pages/Dashboard';
 import { LayoutPrivado } from './layouts/LayoutPrivado';
 import { Layouts } from './pages/Layouts';
 import { Changelog } from './pages/Changelog';
+import { Dispositivos } from './pages/Dispositivos';
 
 const router = createBrowserRouter([
   {
@@ -29,8 +30,8 @@ const router = createBrowserRouter([
         element: <Dashboard/>
       },
       {
-        path:'layouts',
-        element: <Layouts/>
+        path:'dispositivos',
+        element: <Dispositivos/>
       },
       {
         path:'changelog',

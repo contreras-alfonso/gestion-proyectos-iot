@@ -30,6 +30,13 @@ export const Dashboard = () => {
             simbol: '+',
             bgColor: 'bg-pink-100',
             icon: <i className="fa-regular fa-circle-exclamation text-pink-500"></i>,
+        },
+        {
+            text: 'Humedad del ambiente',
+            numberMax: 18232,
+            simbol: '+',
+            bgColor: 'bg-pink-100',
+            icon: <i className="fa-regular fa-circle-exclamation text-pink-500"></i>,
         }
     ]
 
@@ -73,7 +80,7 @@ export const Dashboard = () => {
             <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-3.jpg" className='w-9 rounded-md' alt="" />
         </div> */}
 
-        <div className='p-10'>
+        <div className=''>
             <h1 className='text-xl uppercase font-black mb-5'>Dashboard</h1>
             <div className='flex  gap-5'>
                 <div className='flex flex-wrap gap-5 mb-5'>

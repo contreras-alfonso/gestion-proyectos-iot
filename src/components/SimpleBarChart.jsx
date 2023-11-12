@@ -75,9 +75,9 @@ export const SimpleBarChart = () => {
                     
                     >
                     <CartesianGrid strokeDasharray={"3 3"}/> 
-                    <XAxis dataKey="name"/>
-                    <YAxis />
-                    <Tooltip/>
+                    <XAxis dataKey="name" tick={{ fontSize: 14,angle: 0 }} />
+                    <YAxis tick={{ fontSize: 14 ,angle: -20}} />
+                    <Tooltip contentStyle={{ fontSize: 13 }} itemStyle={{ fontSize: 13 }} />
                   
                     {/* <Bar dataKey="weight" stroke='#8884d8' fill="#8884d8"/> */}
                     {/* <Bar dataKey="age" fill="#1ee3cf"/> */}

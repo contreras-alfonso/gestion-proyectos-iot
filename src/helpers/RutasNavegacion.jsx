@@ -5,9 +5,9 @@ const secciones = [
         icon: <i className="fa-regular fa-gauge "></i>,
     },
     {
-        seccion: "Layouts",
-        ruta: 'layouts',
-        icon: <i className="fa-light fa-sensor-cloud "></i>,
+        seccion: "Dispositivos",
+        ruta: 'dispositivos',
+        icon: <i className="fa-light fa-microchip"></i>,
     },
     {
         seccion: "Changelog",
