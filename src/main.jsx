@@ -9,6 +9,8 @@ import { LayoutPrivado } from './layouts/LayoutPrivado';
 import { Layouts } from './pages/Layouts';
 import { Changelog } from './pages/Changelog';
 import { Dispositivos } from './pages/Dispositivos';
+import { Plantas } from './pages/Plantas';
+import { PlantasProvider } from './context/PlantasProvider';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,10 @@ const router = createBrowserRouter([
         element: <Dashboard/>
       },
       {
+        path:'plantas',
+        element: <Plantas/>
+      },
+      {
         path:'dispositivos',
         element: <Dispositivos/>
       },
@@ -43,6 +49,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <PlantasProvider>
+      <RouterProvider router={router} />
+    </PlantasProvider>
   </React.StrictMode>,
 )

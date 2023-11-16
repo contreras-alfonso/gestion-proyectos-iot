@@ -75,10 +75,6 @@ export const Dashboard = () => {
 
   return (
     <>
-        {/* <div className='bg-white py-5 px-5  flex justify-end items-center gap-5'>
-            <i class="fa-sharp fa-regular fa-bell text-xl text-gray-500"></i>
-            <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-3.jpg" className='w-9 rounded-md' alt="" />
-        </div> */}
 
         <div className=''>
             <h1 className='text-xl uppercase font-black mb-5'>Dashboard</h1>
