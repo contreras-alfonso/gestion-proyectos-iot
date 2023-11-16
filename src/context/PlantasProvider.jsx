@@ -6,16 +6,18 @@ const PlantasProvider = ({children}) => {
 
     const [plantas,setPlantas] = useState([]);
     const [planta,setPlanta] = useState({})
+    const [imagenesPlantas,setImagenesPlantas] = useState([]);
+    const [modalAgregarPlanta,setModalAgregarPlanta] = useState(false);
 
     useEffect(()=>{
-        const obtenerPlantas = async () => {
-            const url = `http://localhost:3000/plantas/getAll`;
+        const obtenerImagenesPlantas = async () => {
+            const url = `http://localhost:3000/imagenesPlantas/getAll`;
             const response = await fetch(url);
             const data = await response.json();
-
+            setImagenesPlantas(data);
         }
 
-        obtenerPlantas();
+        obtenerImagenesPlantas();
     })
 
     const agregarPlanta = async (infPlanta) => {
@@ -34,6 +36,9 @@ const PlantasProvider = ({children}) => {
         <PlantasContext.Provider value={{
            plantas,
            planta,
+           imagenesPlantas,
+           modalAgregarPlanta,
+           setModalAgregarPlanta
         }}>
             {children}
         </PlantasContext.Provider>

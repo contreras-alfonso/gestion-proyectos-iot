@@ -1,51 +1,43 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 
-export const ModalAGregarPlanta = () => {
-  let [isOpen, setIsOpen] = useState(true)
-  const [imagenCheck, setImagenCheck] = useState(0);
-  const galeriaImagenes = [
-    {
-      imgPath: '/images/planta1.jpeg',
-      id: "planta1",
-      num: 1,
-    },
-    {
-      imgPath: '/images/planta2.jpeg',
-      id: "planta2",
-      num: 2,
-    },
-    {
-      imgPath: '/images/planta3.jpeg',
-      id: "planta3",
-      num: 3,
-    },
-    {
-      imgPath: '/images/planta4.jpeg',
-      id: "planta4",
-      num: 4,
-    },
-    {
-      imgPath: '/images/planta5.jpeg',
-      id: "planta5",
-      num: 5,
-    },
-    
-  ]
+export const ModalAGregarPlanta = ({imagenesPlantas,modalAgregarPlanta,setModalAgregarPlanta}) => {
+  const galeriaImagenes = imagenesPlantas;
+  const [nombre,setNombre] = useState('');
+  const [especie,setEspecie] = useState('');
+  const [temperatura,setTemperatura] = useState('');
+  const [humedadSuelo,setHumedadSuelo] = useState('');
+  const [descripcion,setDescripcion] = useState('');
+  const [imagenCheck, setImagenCheck] = useState('');
+  const [pathImagen,setPathImagen] = useState('');
+  
+  const handleSubmit = () => {
+    if([nombre,especie,temperatura,humedadSuelo,descripcion,pathImagen].includes('')){
+      console.log('Todos los campos son obligatorios');
+      return;
+    }
+    const infPlanta = {
+      nombre,
+      especie,
+      temperatura,
+      humedadSuelo,
+      descripcion,
+      pathImagen,
+    }
 
-  function closeModal() {
-    setIsOpen(false)
+    console.log(infPlanta)
   }
 
-  function openModal() {
-    setIsOpen(true)
+  const asignarImagenCheck = (e) => {
+    setImagenCheck(e._id);
+    setPathImagen(e.imgPath)
   }
 
   return (
     <>
 
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+      <Transition appear show={modalAgregarPlanta} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={()=>{setModalAgregarPlanta(false)}}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -78,19 +70,19 @@ export const ModalAGregarPlanta = () => {
                   </Dialog.Title>
                   <div className="my-7 w-full flex flex-col gap-[10px]">
                     <span className='text-xs uppercase font-semibold'>Nombre</span>
-                    <input type="text" placeholder='' className='border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none'/>
+                    <input value={nombre} onChange={(e)=>{setNombre(e.target.value)}} type="text" placeholder='' className='border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none'/>
                     <span className='text-xs uppercase font-semibold'>Especie</span>
-                    <input type="text" placeholder='' className='border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none'/>
+                    <input value={especie} onChange={(e)=>{setEspecie(e.target.value)}} type="text" placeholder='' className='border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none'/>
                     <span className='text-xs uppercase font-semibold'>Temperatura °C</span>
-                    <input type="text" placeholder='' className='border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none'/>
+                    <input value={temperatura} onChange={(e)=>{setTemperatura(e.target.value)}} type="text" placeholder='' className='border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none'/>
                     <span className='text-xs uppercase font-semibold'>Humedad del suelo</span>
-                    <input type="text" placeholder='' className='border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none'/>
+                    <input value={humedadSuelo} onChange={(e)=>{setHumedadSuelo(e.target.value)}} type="text" placeholder='' className='border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none'/>
                     <span className='text-xs uppercase font-semibold'>Descripcion</span>
-                    <textarea name="" id="" cols="30" rows="5" className='border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none resize-none'></textarea>
+                    <textarea value={descripcion} onChange={(e)=>{setDescripcion(e.target.value)}} name="" id="" cols="30" rows="5" className='border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none resize-none'></textarea>
                     <span className='text-xs uppercase font-semibold'>Icono</span>
                     <div className='flex gap-3 mx-auto'>
-                      {galeriaImagenes.map(e=>(
-                        <img onClick={()=>{setImagenCheck(e.num)}} key={e.id} className={`w-20 shadow px-4 py-2 rounded-lg cursor-pointer ${e.num === imagenCheck && 'border border-emerald-500'}`}src={e.imgPath} alt={e.id} />
+                      { galeriaImagenes.map(e=>(
+                        <img onClick={()=>{asignarImagenCheck(e)}} key={e._id} className={`w-20 shadow px-4 py-2 rounded-lg cursor-pointer ${e._id === imagenCheck && 'border border-emerald-500'}`} src={`${import.meta.env.VITE_RUTA_BACKEND}${e.imgPath}`} alt={e.id} />
                       ))}
                      
                     </div>
@@ -99,8 +91,8 @@ export const ModalAGregarPlanta = () => {
                   <div className="mt-4 flex items-center">
                     <button
                       type="button"
-                      className="w-full rounded-full border border-transparent bg-emerald-500 px-4 py-3 text-sm font-bold uppercase text-white hover:bg-emerald-600 duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={closeModal}
+                      className="w-full rounded-full border border-transparent bg-emerald-500 px-4 py-3 text-sm font-medium uppercase text-white hover:bg-emerald-600 duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 tracking-wider"
+                      onClick={handleSubmit}
                     >
                       Agregar
                     </button>
