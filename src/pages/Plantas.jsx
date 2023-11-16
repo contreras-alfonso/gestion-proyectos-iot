@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import { ModalAGregarPlanta } from '../components/ModalAgregarPlanta';
 import { CardInfoPlanta } from '../components/CardInfoPlanta';
 import usePlantas from '../hooks/usePlantas';
+import { Skeleton } from '../components/Skeleton';
 
 
 export const Plantas = () => {
-    const {plantas,planta,imagenesPlantas,modalAgregarPlanta,setModalAgregarPlanta} = usePlantas();
-
+    const {plantas,planta,imagenesPlantas,modalAgregarPlanta,setModalAgregarPlanta, agregarPlanta,agregarPlantaState} = usePlantas();
+    console.log(plantas);
   return (
     <>
         <div className='flex justify-between items-center'>
@@ -18,11 +19,16 @@ export const Plantas = () => {
         </div>
 
         <div className='mt-5 flex gap-5'>
-            <CardInfoPlanta/>
+            {plantas.length ? 
+            plantas.map(p=>
+                <CardInfoPlanta key={p._id} planta={p}/>
+            ) : 
+                <Skeleton/>
+            }
         </div>
 
 
-        {modalAgregarPlanta && <ModalAGregarPlanta modalAgregarPlanta={modalAgregarPlanta} setModalAgregarPlanta={setModalAgregarPlanta} imagenesPlantas={imagenesPlantas} />}
+        {modalAgregarPlanta && <ModalAGregarPlanta modalAgregarPlanta={modalAgregarPlanta} setModalAgregarPlanta={setModalAgregarPlanta} imagenesPlantas={imagenesPlantas} agregarPlanta={agregarPlanta} agregarPlantaState={agregarPlantaState}/>}
         
     </>
 

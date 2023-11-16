@@ -1,7 +1,8 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
+import Swal from 'sweetalert2';
 
-export const ModalAGregarPlanta = ({imagenesPlantas,modalAgregarPlanta,setModalAgregarPlanta}) => {
+export const ModalAGregarPlanta = ({imagenesPlantas,modalAgregarPlanta,setModalAgregarPlanta,agregarPlanta, agregarPlantaState}) => {
   const galeriaImagenes = imagenesPlantas;
   const [nombre,setNombre] = useState('');
   const [especie,setEspecie] = useState('');
@@ -10,8 +11,9 @@ export const ModalAGregarPlanta = ({imagenesPlantas,modalAgregarPlanta,setModalA
   const [descripcion,setDescripcion] = useState('');
   const [imagenCheck, setImagenCheck] = useState('');
   const [pathImagen,setPathImagen] = useState('');
+
   
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if([nombre,especie,temperatura,humedadSuelo,descripcion,pathImagen].includes('')){
       console.log('Todos los campos son obligatorios');
       return;
@@ -20,12 +22,18 @@ export const ModalAGregarPlanta = ({imagenesPlantas,modalAgregarPlanta,setModalA
       nombre,
       especie,
       temperatura,
-      humedadSuelo,
+      humedad:humedadSuelo,
       descripcion,
-      pathImagen,
+      pathIcono:pathImagen,
     }
 
-    console.log(infPlanta)
+    const data = await agregarPlanta(infPlanta);
+    if(data.status){
+      //TODO:FALTA AGREGAR SWEET ALERT, EN EL CASO DE FALSE TAMBIEN
+      agregarPlantaState(data.data);
+      setModalAgregarPlanta(false);
+    }
+
   }
 
   const asignarImagenCheck = (e) => {
