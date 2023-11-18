@@ -42,7 +42,7 @@ const router = createBrowserRouter([
         element: <Dispositivos/>
       },
       {
-        path:'dispositivo/:id',
+        path:'sistema/:id',
         element: <Dispositivo/>
       },
       {

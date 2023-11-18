@@ -1,11 +1,33 @@
 import React, { useState } from 'react'
 import usePlantas from '../hooks/usePlantas';
 import Select from 'react-select';
+import useDispositivos from '../hooks/useDispositivos';
+import { useNavigate } from 'react-router-dom';
 
-export const InformacionPlantaDesvinculada = () => {
+export const InformacionPlantaDesvinculada = ({id}) => {
+
+    console.log(id);
 
     const {plantas} = usePlantas();
-    const [idPlanta,setIdPlanta] = useState('ww');
+    const {asignarPlantaDispositivo} = useDispositivos();
+    const [idPlanta,setIdPlanta] = useState('');
+    const navigate = useNavigate();
+
+    const handleSubmit = async () => {
+        if(idPlanta){
+            //TODO : falta msg
+            console.log('Seleccione primero una planta.');
+        }
+        const data = await asignarPlantaDispositivo({idPlanta,idDispositivo:id});
+        if(data.status){
+            console.log(data.msg);
+            navigate('/administration/sistema/'+id);
+            window.location.reload();
+
+        }else{
+            console.log(data.msg);
+        }
+    }
 
     const handleChange = (selectedOption) => {
         setIdPlanta(selectedOption.value);
@@ -52,7 +74,7 @@ export const InformacionPlantaDesvinculada = () => {
                             isSearchable={false}
                         />
             </div>
-            <button className='text-sm border-emerald-500 border rounded-lg py-2 bg-emerald-500 text-white duration-300 hover:bg-emerald-600'>Vincular</button>
+            <button onClick={handleSubmit} className='text-sm border-emerald-500 border rounded-lg py-2 bg-emerald-500 text-white duration-300 hover:bg-emerald-600'>Vincular</button>
         </div>
     </>
   )

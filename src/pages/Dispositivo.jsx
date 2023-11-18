@@ -96,7 +96,7 @@ export const Dispositivo = () => {
 
             <h2 className='font-black text-3xl text-gray-300 text-center mt-10 mb-5'>Primero vincula el sistema a una planta, para visualizar los datos.</h2>
             <div className='flex items-center justify-between gap-5'>
-            <InformacionPlantaDesvinculada planta={planta} id={id}/>
+            <InformacionPlantaDesvinculada id={id}/>
             </div>
           </>
         )

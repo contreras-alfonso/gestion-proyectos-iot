@@ -53,6 +53,20 @@ const DispositivosProvider = ({children}) => {
         return data;
     }
 
+    const asignarPlantaDispositivo = async (info) => {
+        const url = `http://localhost:3000/dispositivos/updateAsignarPlantaDispositivo`;
+        const headers = {
+            'Content-Type':'application/json',
+        }
+        const response = await fetch(url,{
+            headers,
+            method: 'put',
+            body: JSON.stringify(info)
+        });
+        const data = await response.json();
+        return data;
+    }
+
     return (
         <DispositivosContext.Provider value={{
             dispositivo,
@@ -60,6 +74,7 @@ const DispositivosProvider = ({children}) => {
             obtenerDispositivo,
             desvincularDispositivo,
             actualizarEstadoDispositivo,
+            asignarPlantaDispositivo,
          }}>
              {children}
          </DispositivosContext.Provider>
