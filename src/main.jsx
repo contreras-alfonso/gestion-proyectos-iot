@@ -11,6 +11,8 @@ import { Changelog } from './pages/Changelog';
 import { Dispositivos } from './pages/Dispositivos';
 import { Plantas } from './pages/Plantas';
 import { PlantasProvider } from './context/PlantasProvider';
+import { Dispositivo } from './pages/Dispositivo';
+import { DispositivosProvider } from './context/DispositivosProvider';
 
 const router = createBrowserRouter([
   {
@@ -36,8 +38,12 @@ const router = createBrowserRouter([
         element: <Plantas/>
       },
       {
-        path:'dispositivos',
+        path:'sistemas',
         element: <Dispositivos/>
+      },
+      {
+        path:'dispositivo/:id',
+        element: <Dispositivo/>
       },
       {
         path:'changelog',
@@ -49,8 +55,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <PlantasProvider>
-      <RouterProvider router={router} />
-    </PlantasProvider>
+    <DispositivosProvider>
+      <PlantasProvider>
+        <RouterProvider router={router} />
+      </PlantasProvider>
+    </DispositivosProvider>
   </React.StrictMode>,
 )

@@ -1,9 +1,19 @@
 import { useState } from 'react'
 import { Switch } from '@headlessui/react'
+import useDispositivos from '../hooks/useDispositivos'
 
-export const Toggle = ({enabled,setEnabled}) => { 
+export const Toggle = ({enabled,setEnabled,id}) => { 
+
+  const {actualizarEstadoDispositivo} = useDispositivos();
+
+  const handleSubmit = async () => {
+    const data = await actualizarEstadoDispositivo({id});
+    console.log(data);
+  }
+
   return (
     <Switch
+      onClick={handleSubmit}
       checked={enabled}
       onChange={setEnabled}
       className={`${enabled ? 'bg-emerald-500' : 'bg-emerald-100'}

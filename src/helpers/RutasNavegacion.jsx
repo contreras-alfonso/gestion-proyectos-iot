@@ -10,8 +10,8 @@ const secciones = [
         icon: <i className="fa-regular fa-leaf"></i>,
     },
     {
-        seccion: "Dispositivos",
-        ruta: 'dispositivos',
+        seccion: "Sistemas",
+        ruta: 'sistemas',
         icon: <i className="fa-light fa-microchip"></i>,
     },
     {

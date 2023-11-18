@@ -7,6 +7,7 @@ import { Skeleton } from '../components/Skeleton';
 
 export const Plantas = () => {
     const {plantas,planta,imagenesPlantas,modalAgregarPlanta,setModalAgregarPlanta, agregarPlanta,agregarPlantaState} = usePlantas();
+    console.log(plantas)
   return (
     <>
         <div className='flex justify-between '>
@@ -20,7 +21,7 @@ export const Plantas = () => {
         <div className='mt-5 flex flex-wrap justify-center items-center gap-5'>
             {plantas.length ? 
             plantas.map(p=>
-                <CardInfoPlanta key={p._id} planta={p}/>
+                {return (p._id !== '6557f6371c63c6b93f684be7' && (<CardInfoPlanta key={p._id} planta={p}/>))}
             ) : 
                 <Skeleton/>
             }
