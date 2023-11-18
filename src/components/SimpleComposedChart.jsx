@@ -43,7 +43,7 @@ export const SimpleComposedChart = () => {
       ];
 
   return (
-    <div className='mt-5 p-5 rounded-lg bg-white shadow'>
+    <div className='mt-5 p-5 rounded-lg bg-white'>
         <ResponsiveContainer width="100%" aspect={3}>
             <ComposedChart
             width={500}

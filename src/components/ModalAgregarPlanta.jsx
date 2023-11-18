@@ -99,7 +99,7 @@ export const ModalAGregarPlanta = ({imagenesPlantas,modalAgregarPlanta,setModalA
                   <div className="mt-4 flex items-center">
                     <button
                       type="button"
-                      className="w-full rounded-full border border-transparent bg-emerald-500 px-4 py-3 text-sm font-medium uppercase text-white hover:bg-emerald-600 duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 tracking-wider"
+                      className="w-full rounded-lg border border-transparent bg-emerald-500 px-4 py-3 text-sm font-medium uppercase text-white hover:bg-emerald-600 duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 tracking-wider"
                       onClick={handleSubmit}
                     >
                       Agregar

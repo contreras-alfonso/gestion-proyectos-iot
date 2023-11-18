@@ -7,18 +7,17 @@ import { Skeleton } from '../components/Skeleton';
 
 export const Plantas = () => {
     const {plantas,planta,imagenesPlantas,modalAgregarPlanta,setModalAgregarPlanta, agregarPlanta,agregarPlantaState} = usePlantas();
-    console.log(plantas);
   return (
     <>
-        <div className='flex justify-between items-center'>
-            <h1 className='text-xl uppercase font-black mb-5'>Plantas</h1>
+        <div className='flex justify-between '>
+            <h1 className='text-xl uppercase font-black'>Plantas</h1>
             <button onClick={()=>{setModalAgregarPlanta(true)}} className='py-3 px-10 rounded-lg shadow text-[13px]  flex items-center justify-center gap-2 bg-emerald-500 text-white hover:bg-emerald-600 duration-300 uppercase'>
                 <span>Nueva Planta</span>
                 <i className="fa-regular fa-seedling"></i>
             </button>
         </div>
 
-        <div className='mt-5 flex gap-5'>
+        <div className='mt-5 flex flex-wrap justify-center items-center gap-5'>
             {plantas.length ? 
             plantas.map(p=>
                 <CardInfoPlanta key={p._id} planta={p}/>
