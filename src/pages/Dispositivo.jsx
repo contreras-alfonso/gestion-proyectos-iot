@@ -78,10 +78,23 @@ export const Dispositivo = () => {
               <button className='text-sm px-5 border-emerald-500 border rounded-lg py-2 bg-emerald-500 text-white duration-300 hover:bg-emerald-600'>Activar</button>
             </div>
           </div>
-          <div className=''>
-            <InformacionPlanta planta={planta} id={id}/>
-            <SimpleComposedChart/>
-          </div>
+          
+            <div className={`flex gap-5 ${planta?._id === '6557f6371c63c6b93f684be7' && 'justify-center'}`}>
+              
+              <InformacionPlanta planta={planta} id={id}/>
+              {dispositivo?._id === '65590aab8ef290c452993fb5' && (
+               
+                  <div className='mt-5 bg-black rounded-lg flex items-center justify-center w-full'>
+                     <a target='_blank' href="https://streaming-video-vivero.onrender.com/b1b1c67f-c6b3-40ba-a652-ae0e5c25ce2e7e4633ea-46e5-4f45-8c4f-52e243b79e52">
+                    <i className="fa-solid fa-play text-white text-4xl cursor-pointer"></i>
+                    </a>
+                  </div>
+                
+              )}
+              
+            </div>
+          
+          <SimpleComposedChart/>
           <ContainerDataTable columns={columns} data={users}/>
         </div>
         ) :
