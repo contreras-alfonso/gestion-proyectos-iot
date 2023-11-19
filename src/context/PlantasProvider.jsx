@@ -11,7 +11,7 @@ const PlantasProvider = ({children}) => {
 
     useEffect(()=>{
         const obtenerPlantas = async () => {
-            const url = `http://localhost:3000/plantas/getAll`; 
+            const url = `${import.meta.env.VITE_RUTA_BACKEND}/plantas/getAll`; 
             const response = await fetch(url);
             const data = await response.json();
             setPlantas(data);
@@ -20,7 +20,7 @@ const PlantasProvider = ({children}) => {
         obtenerPlantas();
 
         const obtenerImagenesPlantas = async () => {
-            const url = `http://localhost:3000/imagenesPlantas/getAll`; 
+            const url = `${import.meta.env.VITE_RUTA_BACKEND}/imagenesPlantas/getAll`; 
             const response = await fetch(url);
             const data = await response.json();
             setImagenesPlantas(data);
@@ -36,7 +36,7 @@ const PlantasProvider = ({children}) => {
     }
 
     const agregarPlanta = async (infPlanta) => {
-        const url = `http://localhost:3000/plantas/add`;
+        const url = `${import.meta.env.VITE_RUTA_BACKEND}/plantas/add`;
         const headers = {
             'Content-Type':'application/json',
         }

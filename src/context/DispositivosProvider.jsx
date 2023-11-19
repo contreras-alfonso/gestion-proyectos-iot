@@ -8,7 +8,7 @@ const DispositivosProvider = ({children}) => {
 
     useEffect(()=>{
         const obtenerDispositivos = async () => {
-            const url = `http://localhost:3000/dispositivos/getAll`; 
+            const url = `${import.meta.env.VITE_RUTA_BACKEND}/dispositivos/getAll`; 
             const response = await fetch(url);
             const data = await response.json();
             setDispositivos(data);
@@ -18,14 +18,14 @@ const DispositivosProvider = ({children}) => {
     },[])
 
     const obtenerDispositivo = async (id) => {
-        const url = `http://localhost:3000/dispositivos/get/${id}`;
+        const url = `${import.meta.env.VITE_RUTA_BACKEND}/dispositivos/get/${id}`;
         const response = await fetch(url);
         const data = await response.json();
         setDispositivo(data);
     }
 
     const desvincularDispositivo = async (infoDispositivo) => {
-        const url = `http://localhost:3000/dispositivos/updateDispositivo`;
+        const url = `${import.meta.env.VITE_RUTA_BACKEND}/dispositivos/updateDispositivo`;
         const headers = {
             'Content-Type':'application/json',
         }
@@ -40,7 +40,7 @@ const DispositivosProvider = ({children}) => {
     }
 
     const actualizarEstadoDispositivo = async (infoDispositivo) => {
-        const url = `http://localhost:3000/dispositivos/updateEstadoDispositivo`;
+        const url = `${import.meta.env.VITE_RUTA_BACKEND}/dispositivos/updateEstadoDispositivo`;
         const headers = {
             'Content-Type':'application/json',
         }
@@ -54,7 +54,7 @@ const DispositivosProvider = ({children}) => {
     }
 
     const asignarPlantaDispositivo = async (info) => {
-        const url = `http://localhost:3000/dispositivos/updateAsignarPlantaDispositivo`;
+        const url = `${import.meta.env.VITE_RUTA_BACKEND}/dispositivos/updateAsignarPlantaDispositivo`;
         const headers = {
             'Content-Type':'application/json',
         }
