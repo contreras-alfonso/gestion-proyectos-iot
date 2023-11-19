@@ -29,30 +29,33 @@ export const Dispositivo = () => {
       }
     },[dispositivo])
 
-    const [users,setUsers] = useState([]);
+    const [dataSensores,setDataSensores] = useState([]);
 
     const columns = [
         {
             name: 'ID',
-            selector: row => row.id,
+            selector: row => row._id,
         },
         {
-            name: 'Name',
-            selector: row => row.title,
+            name: 'Humedad del ambiente',
+            selector: row => row.humedadAmbiente,
         },
         {
-            name: 'Username',
-            selector: row => row.title,
+            name: 'Humedad del suelo',
+            selector: row => row.humedadSuelo,
         },
+        {
+          name: 'Tiempo',
+          selector: row => row.createdAt,
+      },
 
     ];
 
     useEffect(()=>{
       const getUsuario = async () => {
-      
-          const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+          const response = await fetch(`${import.meta.env.VITE_RUTA_BACKEND}/sensores/getAll/${id}`);
           const data = await response.json();
-          setUsers(data);
+          setDataSensores(data);
 
       }
       getUsuario();
@@ -94,8 +97,8 @@ export const Dispositivo = () => {
               
             </div>
           
-          <SimpleComposedChart/>
-          <ContainerDataTable columns={columns} data={users}/>
+          <SimpleComposedChart data={dataSensores}/>
+          <ContainerDataTable columns={columns} data={dataSensores}/>
         </div>
         ) :
         

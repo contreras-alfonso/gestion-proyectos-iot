@@ -40,7 +40,7 @@ export const InformacionPlantaDesvinculada = ({id}) => {
                 value: planta._id,
                 label: (
                     <div className='w-full flex gap-5 items-center'>
-                        <img className='w-4' src={`${import.meta.env.VITE_RUTA_BACKEND}${planta.pathIcono}`} alt="imagen" />
+                        <img className='w-4' src={`${import.meta.env.VITE_RUTA_BACKEND}/${planta.pathIcono}`} alt="imagen" />
                         {planta.nombre}
                     </div>
                 ),

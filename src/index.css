@@ -39,6 +39,18 @@
     font-size: 20px;
 }
 
+.rdt_TableCol {
+    font-size: 14px;
+    font-weight: 600; /* Tamaño de letra para el encabezado de la tabla */
+}
+
+.rdt_TableCell {
+    font-size: 14px; /* Cambia el tamaño de la letra de las celdas */
+}
+
+.rdt_TableCell:hover{
+    background-color: #F4F5F7;
+}
 
 .fondo_svg{
     background-color: #007764;

@@ -7,7 +7,6 @@ import { Skeleton } from '../components/Skeleton';
 
 export const Plantas = () => {
     const {plantas,planta,imagenesPlantas,modalAgregarPlanta,setModalAgregarPlanta, agregarPlanta,agregarPlantaState} = usePlantas();
-    console.log(plantas)
   return (
     <>
         <div className='flex justify-between '>

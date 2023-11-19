@@ -27,7 +27,7 @@ export const InformacionPlanta = ({planta,id}) => {
                 <p className='text-sm font-semibold'>Temperatura: <span className='font-normal'>{planta?.temperatura}</span></p>
                 <p className='text-sm font-semibold'>Suelo: <span className='font-normal'>{planta?.humedad}</span></p>
             </div>
-            <img className='w-16' src={`${import.meta.env.VITE_RUTA_BACKEND}${planta?.pathIcono}`} alt="" />
+            <img className='w-16' src={`${import.meta.env.VITE_RUTA_BACKEND}/${planta?.pathIcono}`} alt="" />
         </div>
         <button onClick={handleSubmit} className='text-sm border-emerald-500 border rounded-lg py-2 bg-emerald-500 text-white duration-300 hover:bg-emerald-600'>Desvincular</button>
     </div>

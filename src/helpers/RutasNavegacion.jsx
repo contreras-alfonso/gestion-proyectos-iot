@@ -14,16 +14,16 @@ const secciones = [
         ruta: 'sistemas',
         icon: <i className="fa-light fa-microchip"></i>,
     },
-    {
-        seccion: "Changelog",
-        ruta: 'changelog',
-        icon: <i className="fa-regular fa-cloud "></i>,
-    },
-    {
-        seccion: "Chat",
-        ruta: 'chat',
-        icon: <i className="fa-light fa-clouds "></i>,
-    },
+    // {
+    //     seccion: "Changelog",
+    //     ruta: 'changelog',
+    //     icon: <i className="fa-regular fa-cloud "></i>,
+    // },
+    // {
+    //     seccion: "Chat",
+    //     ruta: 'chat',
+    //     icon: <i className="fa-light fa-clouds "></i>,
+    // },
 ]
 
 export{

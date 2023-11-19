@@ -90,7 +90,7 @@ export const ModalAGregarPlanta = ({imagenesPlantas,modalAgregarPlanta,setModalA
                     <span className='text-xs uppercase font-semibold'>Icono</span>
                     <div className='flex gap-3 mx-auto'>
                       { galeriaImagenes.map(e=>(
-                        <img onClick={()=>{asignarImagenCheck(e)}} key={e._id} className={`w-20 shadow px-4 py-2 rounded-lg cursor-pointer ${e._id === imagenCheck && 'border border-emerald-500'}`} src={`${import.meta.env.VITE_RUTA_BACKEND}${e.imgPath}`} alt={e.id} />
+                        <img onClick={()=>{asignarImagenCheck(e)}} key={e._id} className={`w-20 shadow px-4 py-2 rounded-lg cursor-pointer ${e._id === imagenCheck && 'border border-emerald-500'}`} src={`${import.meta.env.VITE_RUTA_BACKEND}/${e.imgPath}`} alt={e.id} />
                       ))}
                      
                     </div>
