@@ -18,13 +18,13 @@ export const SimpleComposedChart = ({data}) => {
                 left: 20,
             }}
             >
-            <XAxis dataKey="createdAt" tick={{ fontSize: 14,angle: 0 }}/>
+            <XAxis dataKey={`fechaYhora`} tick={{ fontSize: 14,angle: 0 }}/>
             <YAxis label={{ angle: -90, position: 'insideLeft' }}  tick={{ fontSize: 14,angle: 0 }}/>
             <CartesianGrid strokeDasharray={"2"}/> 
             <Tooltip contentStyle={{ fontSize: 13 }} itemStyle={{ fontSize: 13 }}/>
             {/* <Area type="monotone" dataKey="humedadSuelo" fill="#dbeafe" stroke="#38bdf8" /> */}
             <Bar dataKey="humedadAmbiente" barSize={20} fill="#65b4ab" />
-            <Line type="monotone" dataKey="humedadSuelo" stroke="#f46d71" />
+            <Line type="monotone" dataKey="temperatura" stroke="#f46d71" />
             </ComposedChart>
         </ResponsiveContainer>
     </div>

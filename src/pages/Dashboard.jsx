@@ -8,70 +8,93 @@ import { SimpleBarChart } from '../components/SimpleBarChart';
 export const Dashboard = () => {
     
     const [spinner,setSpinner] = useState(false);
+    const [data,setData] = useState([])
+    const [totalPlants,setTotalPlants] = useState();
+    const [temperatura,setTemperatura] = useState();
+    const [humedadSuelo,setHumedadSuelo] = useState();
+    const [humedadAmbiente,setHumedadAmbiente] = useState();
+    const [totalReports,setTotalReports] = useState();
+
+    useEffect(()=>{
+        const getDataDashboard = async () => {
+            const url = `${import.meta.env.VITE_RUTA_BACKEND}/dashboard/getData`;
+            const response = await fetch(url);
+            const data = await response.json();
+            console.log(data)
+            setTotalPlants(data.plantasTotal);
+            setTemperatura(data.temperatura);
+            setHumedadSuelo(data.humedadSuelo);
+            setHumedadAmbiente(data.humedadAmbiente);
+            setTotalReports(data.cantidadReportes);
+        }
+
+        const getDataTable = async () => {
+            const url = `${import.meta.env.VITE_RUTA_BACKEND}/sensores/getAll/65590aab8ef290c452993fb5`;
+            const response = await fetch(url);
+            const data = await response.json();
+            setData(data)
+        }
+        getDataTable();
+        getDataDashboard();
+    },[])
 
     const infCards = [
         {
-            text: 'Total Plants',
-            numberMax: 8,
+            text: 'Sistemas Totales',
+            numberMax: totalPlants,
             simbol: '+',
             bgColor: 'bg-emerald-100',
             icon: <i className="fa-sharp fa-regular fa-leaf text-emerald-500"></i>,
         },
         {
-            text: 'The weather',
-            numberMax: 38,
+            text: 'La temperatura',
+            numberMax: temperatura,
             simbol: '°C',
-            bgColor: 'bg-blue-100',
-            icon: <i className="fa-regular fa-cloud text-blue-500"></i>,
+            bgColor: 'bg-cyan-100',
+            icon: <i class="fa-regular fa-temperature-half text-cyan-500"></i>,
         },
         {
-            text: 'The reporters',
-            numberMax: 18232,
+            text: 'Reportes totales',
+            numberMax: totalReports,
             simbol: '+',
             bgColor: 'bg-pink-100',
             icon: <i className="fa-regular fa-circle-exclamation text-pink-500"></i>,
         },
         {
             text: 'Humedad del ambiente',
-            numberMax: 18232,
-            simbol: '+',
-            bgColor: 'bg-pink-100',
-            icon: <i className="fa-regular fa-circle-exclamation text-pink-500"></i>,
+            numberMax: humedadAmbiente,
+            simbol: '',
+            bgColor: 'bg-blue-100',
+            icon: <i className="fa-regular fa-cloud text-blue-500"></i>,
+        },
+        {
+            text: 'Humedad del suelo',
+            numberMax: humedadSuelo,
+            simbol: '.00',
+            bgColor: 'bg-orange-100',
+            icon: <i class="fa-sharp fa-regular fa-droplet-percent text-orange-500"></i>,
         }
     ]
 
-    const [users,setUsers] = useState([]);
-
-
     const columns = [
         {
-            name: 'ID',
-            selector: row => row.id,
+            name: '#Num',
+            selector: row => row.numeroReporte,
         },
         {
-            name: 'Name',
-            selector: row => row.title,
+            name: 'Humedad del ambiente',
+            selector: row => row.humedadAmbiente,
         },
         {
-            name: 'Username',
-            selector: row => row.title,
+            name: 'Temperatura',
+            selector: row => row.temperatura,
         },
+        {
+          name: 'Tiempo',
+          selector: row => row.fechaYhora,
+      },
 
     ];
-    
-    useEffect(()=>{
-        const getUsuario = async () => {
-            setSpinner(true)
-            const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-            const data = await response.json();
-            setUsers(data);
-            setTimeout(() => {
-                setSpinner(false)
-            }, 1000);
-        }
-        getUsuario();
-
-    },[])
 
   return (
     <>
@@ -87,68 +110,8 @@ export const Dashboard = () => {
 
                 
             </div>
-            <SimpleBarChart/>
-
-            {/* <div className='p-7 bg-white rounded-lg shadow w-full'>
-                <div className='mb-5 flex items-center justify-between'>
-                    <h2 className='font-semibold'>Best Seller</h2>
-                    <div className='flex'>
-                        <button className='text-xs bg-emerald-100 text-emerald-600 py-2 px-3 rounded-lg'>Today</button>
-                        <button className='text-xs  text-gray-600 py-2 px-3 rounded-lg'>Week</button>
-                        <button className='text-xs text-gray-600 py-2 px-3 rounded-lg'>Month</button>
-                    </div>
-                </div>
-
-                <table className='w-full'>
-                    <thead>
-                        <tr className=''>
-                            <td className='uppercase text-xs text-gray-600 py-3'>Seller Name</td>
-                            <td className='uppercase text-xs text-gray-600 py-3'>Company</td>
-                            <td className='uppercase text-xs text-gray-600 py-3'>Product</td>
-                            <td className='uppercase text-xs text-gray-600 py-3'>Revenue</td>
-                            <td className='uppercase text-xs text-gray-600 py-3'>Status</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr className=''>
-                            <td className='text-xs font-medium py-3'>Robert Clinton</td>
-                            <td className='text-xs py-3'>Samsung</td>
-                            <td className='text-xs py-3'>Smart Phone</td>
-                            <td className='text-xs py-3'>S/ 38,536</td>
-                            <td className='text-xs py-3'>Done</td>
-                        </tr>
-                        <tr className=''>
-                            <td className='text-xs font-medium py-3'>Robert Clinton</td>
-                            <td className='text-xs py-3'>Samsung</td>
-                            <td className='text-xs py-3'>Smart Phone</td>
-                            <td className='text-xs py-3'>S/ 38,536</td>
-                            <td className='text-xs py-3'>Done</td>
-                        </tr>
-                        <tr className=''>
-                            <td className='text-xs font-medium py-3'>Robert Clinton</td>
-                            <td className='text-xs py-3'>Samsung</td>
-                            <td className='text-xs py-3'>Smart Phone</td>
-                            <td className='text-xs py-3'>S/ 38,536</td>
-                            <td className='text-xs py-3'>Done</td>
-                        </tr>
-                        <tr className=''>
-                            <td className='text-xs font-medium py-3'>Robert Clinton</td>
-                            <td className='text-xs py-3'>Samsung</td>
-                            <td className='text-xs py-3'>Smart Phone</td>
-                            <td className='text-xs py-3'>S/ 38,536</td>
-                            <td className='text-xs py-3'>Done</td>
-                        </tr>
-                        <tr className=''>
-                            <td className='text-xs font-medium py-3'>Robert Clinton</td>
-                            <td className='text-xs py-3'>Samsung</td>
-                            <td className='text-xs py-3'>Smart Phone</td>
-                            <td className='text-xs py-3'>S/ 38,536</td>
-                            <td className='text-xs py-3'>Done</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div> */}
-            <ContainerDataTable data={users} columns={columns}/>
+            <SimpleBarChart data={data}/>
+            <ContainerDataTable data={data} columns={columns}/>
             
         </div>
 

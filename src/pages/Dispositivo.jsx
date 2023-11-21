@@ -33,20 +33,20 @@ export const Dispositivo = () => {
 
     const columns = [
         {
-            name: 'ID',
-            selector: row => row._id,
+            name: '#Num',
+            selector: row => row.numeroReporte,
         },
         {
             name: 'Humedad del ambiente',
             selector: row => row.humedadAmbiente,
         },
         {
-            name: 'Humedad del suelo',
-            selector: row => row.humedadSuelo,
+            name: 'Temperatura',
+            selector: row => row.temperatura,
         },
         {
           name: 'Tiempo',
-          selector: row => row.createdAt,
+          selector: row => row.fechaYhora,
       },
 
     ];
