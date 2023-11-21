@@ -11,7 +11,7 @@ export const Plantas = () => {
     <>
         <div className='flex justify-between '>
             <h1 className='text-xl uppercase font-black'>Plantas</h1>
-            <button onClick={()=>{setModalAgregarPlanta(true)}} className='py-3 px-10 rounded-lg shadow text-[13px]  flex items-center justify-center gap-2 bg-emerald-500 text-white hover:bg-emerald-600 duration-300 uppercase'>
+            <button onClick={()=>{setModalAgregarPlanta(true)}} className='py-3 px-10 rounded-lg shadow text-[13px] flex items-center justify-center gap-2 bg-emerald-500 text-white hover:bg-emerald-600 duration-300'>
                 <span>Nueva Planta</span>
                 <i className="fa-regular fa-seedling"></i>
             </button>
