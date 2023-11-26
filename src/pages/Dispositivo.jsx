@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import useDispositivos from '../hooks/useDispositivos';
 import { Skeleton } from '../components/Skeleton';
 import { InformacionPlantaDesvinculada } from '../components/InformacionPlantaDesvinculada';
-import usePlantas from '../hooks/usePlantas';
+import { toast } from 'react-toastify';
 
 export const Dispositivo = () => {
 
@@ -15,7 +15,7 @@ export const Dispositivo = () => {
 
     const {id} = useParams();
 
-    const {dispositivo, obtenerDispositivo} = useDispositivos();
+    const {dispositivo, obtenerDispositivo, activarRiegoManual} = useDispositivos();
 
     const {_id,nombre,numeroDispositivo,planta,estado} = dispositivo
     
@@ -68,6 +68,11 @@ export const Dispositivo = () => {
 
   },[])
 
+  const handleActivarRiegoManual = async () => {
+    const data = await activarRiegoManual({_id:id});
+    data.status ? toast.success(data.msg) : toast.error(data.msg)
+  }
+
   return (
     <>
         <h1 className='text-xl uppercase font-black mb-5'>Sistema</h1>
@@ -84,7 +89,7 @@ export const Dispositivo = () => {
 
             <div className='w-3/12 max-lg:w-4/12 py-3 px-5 rounded-lg bg-white flex gap-5 justify-between items-center'>
               <h2 className='text-xs text-center font-semibold'>Riego manual</h2>
-              <button className='text-sm px-5 border-emerald-500 border rounded-lg py-2 bg-emerald-500 text-white duration-300 hover:bg-emerald-600'>Activar</button>
+              <button onClick={handleActivarRiegoManual} className='text-sm px-5 border-emerald-500 border rounded-lg py-2 bg-emerald-500 text-white duration-300 hover:bg-emerald-600'>Activar</button>
             </div>
           </div>
           

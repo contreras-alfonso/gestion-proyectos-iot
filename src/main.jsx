@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import './index.css'
+import 'react-toastify/dist/ReactToastify.css';
 import { Login } from './pages/Login';
 import { LayoutPublico } from './layouts/LayoutPublico';
 import { Dashboard } from './pages/Dashboard';
@@ -14,7 +15,7 @@ import { PlantasProvider } from './context/PlantasProvider';
 import { Dispositivo } from './pages/Dispositivo';
 import { DispositivosProvider } from './context/DispositivosProvider';
 import { UserProvider } from './context/UserProvider';
-import { LayoutTest } from './layouts/LayoutTest';
+import { ToastContainer } from 'react-toastify';
 
 const router = createBrowserRouter([
   {
@@ -53,11 +54,6 @@ const router = createBrowserRouter([
       }
     ]
   },
-
-  {
-    path: "/testlayout/testdata",
-    element: <LayoutTest/>,
-  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -69,5 +65,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </PlantasProvider>
       </DispositivosProvider>
     </UserProvider>
+    <ToastContainer /> 
   </React.StrictMode>,
 )

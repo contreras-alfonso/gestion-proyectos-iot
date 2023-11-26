@@ -3,10 +3,9 @@ import usePlantas from '../hooks/usePlantas';
 import Select from 'react-select';
 import useDispositivos from '../hooks/useDispositivos';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export const InformacionPlantaDesvinculada = ({id}) => {
-
-    console.log(id);
 
     const {plantas} = usePlantas();
     const {asignarPlantaDispositivo} = useDispositivos();
@@ -14,9 +13,10 @@ export const InformacionPlantaDesvinculada = ({id}) => {
     const navigate = useNavigate();
 
     const handleSubmit = async () => {
-        if(idPlanta){
+        if(!idPlanta){
             //TODO : falta msg
-            console.log('Seleccione primero una planta.');
+            toast.error('Seleccione primero una planta.');
+            return;
         }
         const data = await asignarPlantaDispositivo({idPlanta,idDispositivo:id});
         if(data.status){
@@ -48,7 +48,7 @@ export const InformacionPlantaDesvinculada = ({id}) => {
             }  
         }
         return null;
-    }).filter(Boolean);;
+    }).filter(Boolean);
 
   return (
     <>

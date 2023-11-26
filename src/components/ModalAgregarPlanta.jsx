@@ -1,6 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
-import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
 
 export const ModalAGregarPlanta = ({imagenesPlantas,modalAgregarPlanta,setModalAgregarPlanta,agregarPlanta, agregarPlantaState}) => {
   const galeriaImagenes = imagenesPlantas;
@@ -15,7 +15,8 @@ export const ModalAGregarPlanta = ({imagenesPlantas,modalAgregarPlanta,setModalA
   
   const handleSubmit = async () => {
     if([nombre,especie,temperatura,humedadSuelo,descripcion,pathImagen].includes('')){
-      console.log('Todos los campos son obligatorios');
+      //TODO
+      toast.error('Todos los campos son obligatorios.');
       return;
     }
     const infPlanta = {

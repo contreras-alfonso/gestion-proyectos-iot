@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import useUser from '../hooks/useUser';
+import { toast } from 'react-toastify';
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -12,13 +13,13 @@ export const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if([user,password].includes('')){
-      console.log('Todos los campos son necesarios.');
+
+      toast.error('Todos los campos son obligatorios.');
       return;
     }
     const data = await login({user,password});
     if(!data.status){
-      // TODO: falta mensage
-      console.log(data.msg);
+      toast.error(data.msg)
       return;
     }
     localStorage.setItem('jwt',data.token)

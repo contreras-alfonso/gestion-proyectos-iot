@@ -67,6 +67,20 @@ const DispositivosProvider = ({children}) => {
         return data;
     }
 
+    const activarRiegoManual = async (objDispositivo) => {
+        const url = `${import.meta.env.VITE_RUTA_BACKEND}/dispositivos/activarRiegoManual`;
+        const headers = {
+            'Content-Type':'application/json',
+        };
+        const response = await fetch(url,{
+            headers,
+            method: 'post',
+            body: JSON.stringify(objDispositivo)
+        });
+        const data = await response.json();
+        return data;
+    }
+
     return (
         <DispositivosContext.Provider value={{
             dispositivo,
@@ -75,6 +89,7 @@ const DispositivosProvider = ({children}) => {
             desvincularDispositivo,
             actualizarEstadoDispositivo,
             asignarPlantaDispositivo,
+            activarRiegoManual,
          }}>
              {children}
          </DispositivosContext.Provider>

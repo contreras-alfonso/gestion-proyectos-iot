@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Switch } from '@headlessui/react'
 import useDispositivos from '../hooks/useDispositivos'
+import { toast } from 'react-toastify';
 
 export const Toggle = ({enabled,setEnabled,id}) => { 
 
@@ -8,7 +9,8 @@ export const Toggle = ({enabled,setEnabled,id}) => {
 
   const handleSubmit = async () => {
     const data = await actualizarEstadoDispositivo({id});
-    console.log(data);
+    //TODO
+    toast.success(data.msg);
   }
 
   return (

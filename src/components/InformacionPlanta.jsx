@@ -1,6 +1,7 @@
 import React from 'react'
 import useDispositivos from '../hooks/useDispositivos'
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export const InformacionPlanta = ({planta,id}) => {
   // const {especie,temperatura,humedad,descripcion,pathIcono} = planta;
@@ -9,11 +10,12 @@ export const InformacionPlanta = ({planta,id}) => {
   const handleSubmit = async () => {
     const data = await desvincularDispositivo({id})
     if(data.status){
-      console.log(data.msg)
+      //TODO no redirigir
+      toast.success(data.msg)
       navigate('/administration/sistemas');
       window.location.reload();
     }else{
-      console.log(data.msg)
+      toast.error(data.msg)
     }
   }
   return (
