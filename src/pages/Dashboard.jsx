@@ -8,7 +8,8 @@ import { SimpleBarChart } from '../components/SimpleBarChart';
 export const Dashboard = () => {
     
     const [spinner,setSpinner] = useState(false);
-    const [data,setData] = useState([])
+    const [dataSensoresGrafica,setDataSensoresGrafica] = useState([]);
+    const [dataSensoresTable,setDataSensoresTable] = useState([]);
     const [totalPlants,setTotalPlants] = useState();
     const [temperatura,setTemperatura] = useState();
     const [humedadSuelo,setHumedadSuelo] = useState();
@@ -20,7 +21,6 @@ export const Dashboard = () => {
             const url = `${import.meta.env.VITE_RUTA_BACKEND}/dashboard/getData`;
             const response = await fetch(url);
             const data = await response.json();
-            console.log(data)
             setTotalPlants(data.plantasTotal);
             setTemperatura(data.temperatura);
             setHumedadSuelo(data.humedadSuelo);
@@ -32,10 +32,12 @@ export const Dashboard = () => {
             const url = `${import.meta.env.VITE_RUTA_BACKEND}/sensores/getAll/65590aab8ef290c452993fb5`;
             const response = await fetch(url);
             const data = await response.json();
-            setData(data)
+            setDataSensoresGrafica(data.dataSensoresGraficaMod)
+            setDataSensoresTable(data.dataSensoresTableMod)
         }
         getDataTable();
         getDataDashboard();
+
     },[])
 
     const infCards = [
@@ -86,11 +88,15 @@ export const Dashboard = () => {
             selector: row => row.humedadAmbiente,
         },
         {
+            name: 'Humedad del suelo',
+            selector: row => row.humedadSuelo,
+        },
+        {
             name: 'Temperatura',
             selector: row => row.temperatura,
         },
         {
-          name: 'Tiempo',
+          name: 'Fecha',
           selector: row => row.fechaYhora,
       },
 
@@ -110,12 +116,12 @@ export const Dashboard = () => {
 
                 
             </div>
-            <SimpleBarChart data={data}/>
-            <ContainerDataTable data={data} columns={columns}/>
+            <SimpleBarChart data={dataSensoresGrafica}/>
+            <ContainerDataTable data={dataSensoresTable} columns={columns}/>
             
         </div>
 
-        {spinner && <Spinner/>}
+        {/* {spinner && <Spinner/>} */}
     </>
   )
 }

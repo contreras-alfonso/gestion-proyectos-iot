@@ -29,7 +29,8 @@ export const Dispositivo = () => {
       }
     },[dispositivo])
 
-    const [dataSensores,setDataSensores] = useState([]);
+    const [dataSensoresGrafica,setDataSensoresGrafica] = useState([]);
+    const [dataSensoresTable,setDataSensoresTable] = useState([]);
 
     const columns = [
         {
@@ -41,11 +42,15 @@ export const Dispositivo = () => {
             selector: row => row.humedadAmbiente,
         },
         {
+          name: 'Humedad del suelo',
+          selector: row => row.humedadSuelo,
+        },
+        {
             name: 'Temperatura',
             selector: row => row.temperatura,
         },
         {
-          name: 'Tiempo',
+          name: 'Fecha',
           selector: row => row.fechaYhora,
       },
 
@@ -55,7 +60,8 @@ export const Dispositivo = () => {
       const getUsuario = async () => {
           const response = await fetch(`${import.meta.env.VITE_RUTA_BACKEND}/sensores/getAll/${id}`);
           const data = await response.json();
-          setDataSensores(data);
+          setDataSensoresGrafica(data.dataSensoresGraficaMod);
+          setDataSensoresTable(data.dataSensoresTableMod);
 
       }
       getUsuario();
@@ -97,8 +103,8 @@ export const Dispositivo = () => {
               
             </div>
           
-          <SimpleComposedChart data={dataSensores}/>
-          <ContainerDataTable columns={columns} data={dataSensores}/>
+          <SimpleComposedChart data={dataSensoresGrafica}/>
+          <ContainerDataTable columns={columns} data={dataSensoresTable}/>
         </div>
         ) :
         

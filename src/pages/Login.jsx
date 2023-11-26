@@ -1,7 +1,30 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import useUser from '../hooks/useUser';
 
 export const Login = () => {
+  const navigate = useNavigate();
+  const [user,setUser] = useState('viveroplantasyflores@admin.com');
+  const [password,setPassword] = useState('admin159');
+
+  const {login} = useUser();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if([user,password].includes('')){
+      console.log('Todos los campos son necesarios.');
+      return;
+    }
+    const data = await login({user,password});
+    if(!data.status){
+      // TODO: falta mensage
+      console.log(data.msg);
+      return;
+    }
+    localStorage.setItem('jwt',data.token)
+    navigate('/administration/dashboard')
+  }
+
   return (
     <div className='h-screen flex'>
         <div className='w-1/2 flex items-center justify-center'>
@@ -28,11 +51,11 @@ export const Login = () => {
             </div>
 
             <div className='flex flex-col gap-5'>
-              <input type="text" placeholder='Email' className='border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none'/>
-              <input type="password" placeholder='Password' className='border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none'/>
+              <input value={user} onChange={(e)=>{setUser(e.target.value)}} type="text" placeholder='Email' className='border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none'/>
+              <input value={password} onChange={(e)=>{setPassword(e.target.value)}} type="password" placeholder='Password' className='border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none'/>
             </div>
             <p className='text-end text-emerald-500 text-xs'>Forgot password?</p>
-            <Link to={'/administration/dashboard'} className='bg-emerald-500 text-white rounded-lg py-3 text-sm text-center' >Sign In</Link>
+            <button onClick={handleSubmit} type='submit' className='bg-emerald-500 text-white rounded-lg py-3 text-sm text-center hover:bg-emerald-600 duration-300' >Sign In</button>
             <p className='text-gray-400 text-sm font-medium text-center'>Not a Member you? <span className='text-emerald-500'>Sign Up</span></p>
           </form>
         </div>

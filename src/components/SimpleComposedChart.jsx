@@ -5,7 +5,7 @@ export const SimpleComposedChart = ({data}) => {
 
   return (
     <div className='mt-5 p-5 rounded-lg bg-white'>
-        <h2 className='font-semibold text-center py-3 rounded-lg'>Humedad del ambiente y tierra</h2>
+        <h2 className='font-semibold text-center py-3 rounded-lg'>Gráfica Humedad y Temperatura</h2>
         <ResponsiveContainer width="100%" aspect={3}>
             <ComposedChart
             width={500}

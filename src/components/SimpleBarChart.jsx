@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
-export const SimpleBarChart = ({data}) => {
+export const SimpleBarChart = ({data}) => {  
 
   return (
     <>
         <div className='bg-white pr-5 pt-5 pb-5 rounded-lg shadow'>
-        <h2 className='font-semibold text-center py-3 rounded-lg '>Variación de la humedad del ambiente y temperatura</h2>
+        <h2 className='font-semibold text-center mb-5 py-3 rounded-lg '>Gráfica Humedad y Temperatura</h2>
             <ResponsiveContainer width="100%" aspect={3}>
                 <AreaChart 
                     data={data} 
@@ -25,10 +25,9 @@ export const SimpleBarChart = ({data}) => {
                     <YAxis tick={{ fontSize: 14 ,angle: 0}} />
                     <Tooltip contentStyle={{ fontSize: 13 }} itemStyle={{ fontSize: 13 }} />
                   
-                    {/* <Bar dataKey="weight" stroke='#8884d8' fill="#8884d8"/> */}
-                    {/* <Bar dataKey="age" fill="#1ee3cf"/> */}
-                    <Area type={"monotone"} dataKey="humedadAmbiente" stackId={"1"} stroke='#3b82f6' fill="#dbeafe"/>
-                    <Area type={"monotone"} dataKey="temperatura" stackId={"1"} stroke='#f472b6' fill="#ffe4e6"/>
+                    
+                    <Area type={"monotone"} dataKey="temperatura" stackId={"1"} stroke='#10B981' fill="#CAF5E7"/>
+                    <Area type={"monotone"} dataKey="humedadAmbiente" stackId={"1"} stroke='#F46D71' fill="#FBEEE6"/>
                 </AreaChart>
             </ResponsiveContainer>
         </div>

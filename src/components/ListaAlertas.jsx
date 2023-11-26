@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { ContainerAlerta } from './ContainerAlerta'
 
 const ListaAlertas = ({ listaAlertas,setListaAlertas }) => {
 
+  const [notificaciones,setNotificaciones] = useState([])
+
+  useEffect(()=>{
+    const obtenerAlertas = async () => {
+      const url = `${import.meta.env.VITE_RUTA_BACKEND}/notificaciones/getAll`;
+      const response = await fetch(url);
+      const data = await response.json();
+      setNotificaciones(data);
+      }
+    obtenerAlertas();
+  },[])
+
   return (
+
     <>
         <div onClick={()=>{setListaAlertas(false)}} className={`h-screen bg-black/80 cursor-pointer fixed bottom-0 duration-400 top-0 z-30 ${listaAlertas ? 'w-full' : 'w-0'}`}>
 
@@ -13,35 +27,10 @@ const ListaAlertas = ({ listaAlertas,setListaAlertas }) => {
                     <h1 className='text-sm text-gray-600 font-medium text-center'>Notificaciones</h1>
                 </div>
 
-                <div className=' flex flex-col gap-5   p-5 rounded-lg mt-5'>
-                  <div className=' flex justify-between items-center'>
-                    <div className='flex items-center gap-3'>
-                      <div className='bg-black/70 w-1 h-1 p-4 rounded-full flex items-center justify-center text-xs text-white'>
-                        <i className="fa-regular fa-droplet"></i>
-                      </div>
-                      <div>
-                        <p className='text-[13px]'>Sistema de riego 1 <span className='text-emerald-500'>activado</span></p>
-                        <p className='text-xs text-gray-500'>23:05</p>
-                      </div>
-                    </div>
-                    <div className='w-1 h-1 p-1 rounded-full bg-red-500'>
-                      
-                    </div>
-                  </div>
-                  <div className='flex justify-between items-center'>
-                    <div className='flex items-center gap-3'>
-                      <div className='bg-black/70 w-1 h-1 p-4 rounded-full flex items-center justify-center text-xs text-white'>
-                        <i className="fa-solid fa-wifi-slash"></i>
-                      </div>
-                      <div>
-                        <p className='text-[13px]'>Sistema de riego 3 <span className='text-red-500'>Deshabilitado</span></p>
-                        <p className='text-xs text-gray-500'>22:15</p>
-                      </div>
-                    </div>
-                    <div className='w-1 h-1 p-1 rounded-full bg-red-500'>
-                      
-                    </div>
-                  </div>
+                <div className=' flex flex-col gap-5  p-5 rounded-lg mt-5'>
+                  {notificaciones.map(e=>{
+                    return (<ContainerAlerta key={e._id} alerta={e}/>)
+                  })}
                 </div>
 
             </div>

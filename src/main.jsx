@@ -13,6 +13,8 @@ import { Plantas } from './pages/Plantas';
 import { PlantasProvider } from './context/PlantasProvider';
 import { Dispositivo } from './pages/Dispositivo';
 import { DispositivosProvider } from './context/DispositivosProvider';
+import { UserProvider } from './context/UserProvider';
+import { LayoutTest } from './layouts/LayoutTest';
 
 const router = createBrowserRouter([
   {
@@ -51,14 +53,21 @@ const router = createBrowserRouter([
       }
     ]
   },
+
+  {
+    path: "/testlayout/testdata",
+    element: <LayoutTest/>,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <DispositivosProvider>
-      <PlantasProvider>
-        <RouterProvider router={router} />
-      </PlantasProvider>
-    </DispositivosProvider>
+    <UserProvider>
+      <DispositivosProvider>
+        <PlantasProvider>
+          <RouterProvider router={router} />
+        </PlantasProvider>
+      </DispositivosProvider>
+    </UserProvider>
   </React.StrictMode>,
 )
