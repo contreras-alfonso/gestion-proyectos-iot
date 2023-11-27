@@ -8,6 +8,7 @@ const PlantasProvider = ({children}) => {
     const [planta,setPlanta] = useState({})
     const [imagenesPlantas,setImagenesPlantas] = useState([]);
     const [modalAgregarPlanta,setModalAgregarPlanta] = useState(false);
+    const [modalEditarPlanta,setModalEditarPlanta] = useState(false);
 
     useEffect(()=>{
         const obtenerPlantas = async () => {
@@ -49,15 +50,40 @@ const PlantasProvider = ({children}) => {
         return data;
     }
 
+    const editarPlanta = async (infPlanta) => {
+        const url = `${import.meta.env.VITE_RUTA_BACKEND}/plantas/edit`;
+        const headers = {
+            'Content-Type':'application/json',
+        }
+        const response = await fetch(url,{
+            headers,
+            body: JSON.stringify(infPlanta),
+            method: 'PUT'
+        });
+        const data = await response.json();
+        return data;
+    }
+
+    const editarPlantaState = (dataPlanta) => {
+        let copyPlantas = [...plantas];
+        copyPlantas = copyPlantas.map(e=>e._id === dataPlanta._id ? dataPlanta : e);
+        setPlantas(copyPlantas);
+    }
+
     return(
         <PlantasContext.Provider value={{
            plantas,
            planta,
+           setPlanta,
            imagenesPlantas,
            modalAgregarPlanta,
            setModalAgregarPlanta,
+           modalEditarPlanta,
+           setModalEditarPlanta,
            agregarPlanta,
            agregarPlantaState,
+           editarPlanta,
+           editarPlantaState,
         }}>
             {children}
         </PlantasContext.Provider>

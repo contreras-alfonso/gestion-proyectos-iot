@@ -3,10 +3,11 @@ import { ModalAGregarPlanta } from '../components/ModalAgregarPlanta';
 import { CardInfoPlanta } from '../components/CardInfoPlanta';
 import usePlantas from '../hooks/usePlantas';
 import { Skeleton } from '../components/Skeleton';
+import { ModalEditarPlanta } from '../components/ModalEditarPlanta';
 
 
 export const Plantas = () => {
-    const {plantas,planta,imagenesPlantas,modalAgregarPlanta,setModalAgregarPlanta, agregarPlanta,agregarPlantaState} = usePlantas(); 
+    const {plantas,planta,setPlanta,imagenesPlantas,modalAgregarPlanta,setModalAgregarPlanta,modalEditarPlanta,setModalEditarPlanta,agregarPlanta,editarPlanta,agregarPlantaState,editarPlantaState} = usePlantas(); 
   return (
     <>
         <div className='flex justify-between '>
@@ -20,7 +21,11 @@ export const Plantas = () => {
         <div className='mt-5 flex flex-wrap justify-center items-center gap-5'>
             {plantas.length ? 
             plantas.map(p=>
-                {return (p._id !== '6557f6371c63c6b93f684be7' && (<CardInfoPlanta key={p._id} planta={p}/>))}
+                {return (p._id !== '6557f6371c63c6b93f684be7' && (
+                    <div onClick={()=>{setPlanta(p); setModalEditarPlanta(true)}} key={p._id}>
+                        <CardInfoPlanta planta={p} setPlanta={setPlanta}/>
+                    </div>
+                ))}
             ) : 
                 <Skeleton/>
             }
@@ -28,6 +33,8 @@ export const Plantas = () => {
 
 
         {modalAgregarPlanta && <ModalAGregarPlanta modalAgregarPlanta={modalAgregarPlanta} setModalAgregarPlanta={setModalAgregarPlanta} imagenesPlantas={imagenesPlantas} agregarPlanta={agregarPlanta} agregarPlantaState={agregarPlantaState}/>}
+
+        {modalEditarPlanta && <ModalEditarPlanta planta={planta} modalEditarPlanta={modalEditarPlanta} setModalEditarPlanta={setModalEditarPlanta} imagenesPlantas={imagenesPlantas} editarPlanta={editarPlanta} editarPlantaState={editarPlantaState}/>}
         
     </>
 

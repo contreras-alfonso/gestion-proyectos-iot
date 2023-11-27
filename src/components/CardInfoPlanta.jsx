@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const CardInfoPlanta = ({planta}) => {
+export const CardInfoPlanta = ({planta}) => { 
   const {_id,nombre,especie,temperatura, pathIcono} = planta;
   return (
     <div className='flex flex-col gap-3 items-center justify-center rounded-lg py-6 px-6 duration-300 hover:cursor-pointer hover:shadow bg-white w-64 text-center'>

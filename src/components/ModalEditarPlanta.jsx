@@ -1,8 +1,10 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 
-export const ModalAGregarPlanta = ({imagenesPlantas,modalAgregarPlanta,setModalAgregarPlanta,agregarPlanta, agregarPlantaState}) => {
+export const ModalEditarPlanta = ({planta,imagenesPlantas,modalEditarPlanta,setModalEditarPlanta,editarPlanta,editarPlantaState}) => {
+    console.log(planta)
+    console.log(imagenesPlantas)
   const galeriaImagenes = imagenesPlantas;
   const [nombre,setNombre] = useState('');
   const [especie,setEspecie] = useState('');
@@ -12,44 +14,54 @@ export const ModalAGregarPlanta = ({imagenesPlantas,modalAgregarPlanta,setModalA
   const [imagenCheck, setImagenCheck] = useState('');
   const [pathImagen,setPathImagen] = useState('');
 
+  useEffect(()=>{
+    if(planta?._id){
+        setNombre(planta.nombre)
+        setEspecie(planta.especie)
+        setTemperatura(planta.temperatura)
+        setHumedadSuelo(planta.humedad)
+        setDescripcion(planta.descripcion)
+        setImagenCheck(planta.pathIcono)
+    }
+  },[planta])
+
   
   const handleSubmit = async () => {
-    if([nombre,especie,temperatura,humedadSuelo,descripcion,pathImagen].includes('')){
+    if([nombre,especie,temperatura,humedadSuelo,descripcion,imagenCheck].includes('')){
       //TODO
       toast.error('Todos los campos son obligatorios.');
       return;
     }
     const infPlanta = {
+      _id:planta._id,
       nombre,
       especie,
       temperatura,
       humedad:humedadSuelo,
       descripcion,
-      pathIcono:pathImagen,
+      pathIcono:imagenCheck,
     }
 
-    const data = await agregarPlanta(infPlanta);
+    const data = await editarPlanta(infPlanta);
     if(data.status){
-      //TODO:FALTA AGREGAR SWEET ALERT, EN EL CASO DE FALSE TAMBIEN
-      agregarPlantaState(data.data);
-      setModalAgregarPlanta(false);
+      editarPlantaState(data.planta);
       toast.success(data.msg);
+      setModalEditarPlanta(false)
     }else{
-      toast.error(data.msg);
+        toast.error(data.msg);
     }
 
   }
 
   const asignarImagenCheck = (e) => {
-    setImagenCheck(e._id);
-    setPathImagen(e.imgPath)
+    setImagenCheck(e.imgPath);
   }
 
   return (
     <>
 
-      <Transition appear show={modalAgregarPlanta} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={()=>{setModalAgregarPlanta(false)}}>
+      <Transition appear show={modalEditarPlanta} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={()=>{setModalEditarPlanta(false)}}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -78,7 +90,7 @@ export const ModalAGregarPlanta = ({imagenesPlantas,modalAgregarPlanta,setModalA
                     as="h3"
                     className="leading-6 text-gray-900 font-black uppercase text-center"
                   >
-                    Nueva Planta
+                    Editar Planta
                   </Dialog.Title>
                   <div className="my-7 w-full flex flex-col gap-[10px]">
                     <span className='text-xs uppercase font-semibold'>Nombre</span>
@@ -94,7 +106,7 @@ export const ModalAGregarPlanta = ({imagenesPlantas,modalAgregarPlanta,setModalA
                     <span className='text-xs uppercase font-semibold'>Icono</span>
                     <div className='flex gap-3 mx-auto'>
                       { galeriaImagenes.map(e=>(
-                        <img onClick={()=>{asignarImagenCheck(e)}} key={e._id} className={`w-20 shadow px-4 py-2 rounded-lg cursor-pointer ${e._id === imagenCheck && 'border border-emerald-500'}`} src={`${import.meta.env.VITE_RUTA_BACKEND}/${e.imgPath}`} alt={e.id} />
+                        <img onClick={()=>{asignarImagenCheck(e)}} key={e._id} className={`w-20 shadow px-4 py-2 rounded-lg cursor-pointer ${e.imgPath === imagenCheck && 'border border-emerald-500'}`} src={`${import.meta.env.VITE_RUTA_BACKEND}/${e.imgPath}`} alt={e.id} />
                       ))}
                      
                     </div>
@@ -106,7 +118,7 @@ export const ModalAGregarPlanta = ({imagenesPlantas,modalAgregarPlanta,setModalA
                       className="w-full rounded-lg border border-transparent bg-emerald-500 px-4 py-3 text-sm font-medium uppercase text-white hover:bg-emerald-600 duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 tracking-wider"
                       onClick={handleSubmit}
                     >
-                      Agregar
+                      Editar
                     </button>
                   </div>
                 </Dialog.Panel>
