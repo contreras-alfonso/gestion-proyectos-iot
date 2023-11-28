@@ -3,16 +3,18 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import {secciones} from '../helpers/RutasNavegacion';
 import ListaAlertas from './ListaAlertas';
 
-export const Navegacion = ({listaAlertas,setListaAlertas}) => {
+export const FixedNavegacion = ({fixedNavegacion,setFixedNavegacion}) => {
 
- 
+
     const { pathname } = useLocation();
     let ruta = pathname.split('/')[2];
     const rutasNavegacion = secciones;
 
   return (
     <>
-        <div className='max-lg:hidden w-80 bg-white py-10 pr-5 shadow-lg transition-all duration-300'>
+        <div onClick={()=>{setFixedNavegacion(false)}} className={`h-screen bg-black/80 cursor-pointer fixed bottom-0 duration-400 top-0 z-30 ${fixedNavegacion ? 'w-full' : 'w-0'}`}></div>
+
+        <div className='fixed top-0 bottom-0 left-0 w-[360px] bg-white py-10 pr-5 shadow-lg transition-all duration-300 z-40'>
 
             <ul className='text-sm font-medium flex flex-col gap-1'>
                 {rutasNavegacion.map(e=>(
@@ -27,21 +29,8 @@ export const Navegacion = ({listaAlertas,setListaAlertas}) => {
                     </li>
                 ))}
 
-                <li>
-                    <button onClick={()=>{setListaAlertas(!listaAlertas)}} className={`w-full gap-3  py-3 rounded-r-lg relative inline-flex items-center justify-start overflow-hidden transition-all group`}>
-                    <span className="w-0 rounded bg-emerald-500 absolute ease-out duration-500 transition-all group-hover:w-full group-hover:h-full z-1"></span>
-                    <span className={` w-full z-10 px-5 group-hover:text-white flex items-center gap-3`}>
-                        <i className="fa-sharp fa-regular fa-bell"></i>
-                        <div className='text-[13px] flex items-center justify-center gap-2'>
-                            <p>Notificaciones</p> 
-                            {/* <p className='rounded-full w-[3px] h-[3px] bg-red-500 p-2 text-[9px] text-white flex items-center justify-center'>2</p> */}
-                        </div>
-                        </span>
-                    </button>
-                </li>
             </ul>
         </div>
-        {listaAlertas && <ListaAlertas listaAlertas={listaAlertas} setListaAlertas={setListaAlertas}/>}
     </>
   )
 }

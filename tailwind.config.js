@@ -9,7 +9,10 @@ export default {
       colors:{
         'color-bg':'#F4F5F7',
         'color-verde':'#007764',
-      }
+      },
+      screens: {
+        'lg': '1260px',
+      },
     },
   },
   plugins: [],

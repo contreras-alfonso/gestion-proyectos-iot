@@ -46,7 +46,7 @@ export const Dashboard = () => {
             numberMax: totalPlants,
             simbol: '+',
             bgColor: 'bg-emerald-100',
-            icon: <i className="fa-sharp fa-regular fa-leaf text-emerald-500"></i>,
+            icon: <i className="fa-regular fa-microchip text-emerald-500"></i>,
         },
         {
             text: 'La temperatura',
@@ -69,13 +69,13 @@ export const Dashboard = () => {
             bgColor: 'bg-blue-100',
             icon: <i className="fa-regular fa-cloud text-blue-500"></i>,
         },
-        {
-            text: 'Humedad del suelo',
-            numberMax: humedadSuelo,
-            simbol: '.00',
-            bgColor: 'bg-orange-100',
-            icon: <i class="fa-sharp fa-regular fa-droplet-percent text-orange-500"></i>,
-        }
+        // {
+        //     text: 'Humedad del suelo',
+        //     numberMax: humedadSuelo,
+        //     simbol: '.00',
+        //     bgColor: 'bg-orange-100',
+        //     icon: <i class="fa-sharp fa-regular fa-droplet-percent text-orange-500"></i>,
+        // }
     ]
 
     const columns = [
