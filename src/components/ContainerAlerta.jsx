@@ -2,7 +2,7 @@ import React from 'react'
 
 export const ContainerAlerta = ({alerta}) => {
     const {estado,hora,fecha,dispositivo} = alerta;
-  return (
+  return ( 
     <div className=' flex justify-between items-center'>
         <div className='flex items-center gap-3'>
             <div className={` w-1 h-1 p-4 rounded-full flex items-center justify-center text-xs text-white ${estado=='3' ? 'bg-black/90' : 'bg-black/70'}`}>
