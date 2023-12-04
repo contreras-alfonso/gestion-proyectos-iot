@@ -27,12 +27,13 @@ export const Login = () => {
   }
 
   return (
-    <div className='h-screen flex'>
-        <div className='w-1/2 flex items-center justify-center'>
-          <form className='flex flex-col gap-5 px-10 max-lg:w-full' action="">
+    <div className='h-screen flex items-center justify-center 
+    fondo_svg'>
+        <div className='bg-white w-[520px] mx-5  rounded-lg shadow-lg h-fit flex items-center justify-center border-[1px] border-gray-100'>
+          <form className='flex flex-col w-full gap-5 px-10 py-16 max-lg:w-full' action="">
             <div className='space-y-2'>
               <h1 className='font-bold text-3xl text-center'>Sign In</h1>
-              <p className='text-gray-400 text-sm font-medium text-center'>Your Social Campains</p>
+              <p className='text-gray-400 text-sm font-medium text-center'>Vivero la casa de plantas y flores</p>
             </div>
             <div className='flex max-lg:flex-col gap-2 w-full'>
               <button type='button' className='border border-gray-300 text-gray-600 py-3 px-7 rounded-lg text-xs flex items-center justify-center gap-2'>
@@ -46,7 +47,7 @@ export const Login = () => {
             </div>
             <div className='my-3 flex items-center'>
               <hr className='border-[1px] border-gray-100 w-1/3'/>
-              <p className='w-1/3 text-center text-gray-400 text-xs'>Or with email</p>
+              <p className='w-1/3 text-center text-gray-400 text-xs'>With email</p>
               <hr className='border-[1px] border-gray-100 w-1/3'/>
 
             </div>
@@ -55,20 +56,12 @@ export const Login = () => {
               <input value={user} onChange={(e)=>{setUser(e.target.value)}} type="text" placeholder='Email' className='border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none'/>
               <input value={password} onChange={(e)=>{setPassword(e.target.value)}} type="password" placeholder='Password' className='border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none'/>
             </div>
-            <p className='text-end text-emerald-500 text-xs'>Forgot password?</p>
+            <p className='text-end text-emerald-500 text-xs cursor-pointer'>Forgot password?</p>
             <button onClick={handleSubmit} type='submit' className='bg-emerald-500 text-white rounded-lg py-3 text-sm text-center hover:bg-emerald-600 duration-300' >Sign In</button>
-            <p className='text-gray-400 text-sm font-medium text-center'>Not a Member you? <span className='text-emerald-500'>Sign Up</span></p>
+            {/* <p className='text-gray-400 text-sm font-medium text-center'>Not a Member you? <span className='text-emerald-500'>Sign Up</span></p> */}
           </form>
         </div>
 
-        <div className='w-1/2 bg-emerald-500 fondo_svg flex flex-col gap-5 items-center justify-center px-10'>
-          
-          <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/misc/auth-screens.png" className='w-[500px]' alt="" />
-          <h2 className='text-3xl font-black text-white text-center'>Fast, Efficient and Productive</h2>
-          <p className='text-white w-3/4 text-sm text-center'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo amet explicabo saepe quae <span className='text-yellow-400'>molestias</span> hic praesentium, ratione facere velit, eaque minus. <span className='text-yellow-400'>Laudantium</span> pariatur assumenda facilis id laborum reprehenderit consectetur earum.</p>
-          
-          
-        </div>
     </div>
   )
 }

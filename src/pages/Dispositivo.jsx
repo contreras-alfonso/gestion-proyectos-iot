@@ -88,7 +88,7 @@ export const Dispositivo = () => {
             </div>
 
             <div className='w-3/12 max-lg:w-4/12 py-3 px-5 rounded-lg bg-white flex gap-5 justify-between items-center'>
-              <h2 className='text-xs text-center font-semibold'>Riego manual</h2>
+              <h2 className='text-xs text-center font-semibold'>Riego Forzado</h2>
               <button onClick={handleActivarRiegoManual} className='text-sm px-5 border-emerald-500 border rounded-lg py-2 bg-emerald-500 text-white duration-300 hover:bg-emerald-600'>Activar</button>
             </div>
           </div>
