@@ -5,8 +5,8 @@ import { toast } from 'react-toastify';
 
 export const Login = () => {
   const navigate = useNavigate();
-  const [user,setUser] = useState('viveroplantasyflores@admin.com');
-  const [password,setPassword] = useState('admin159');
+  const [user,setUser] = useState('');
+  const [password,setPassword] = useState('');
 
   const {login} = useUser();
 
