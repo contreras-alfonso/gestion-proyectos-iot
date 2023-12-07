@@ -4,13 +4,13 @@ import { SimpleBarChart } from '../components/SimpleBarChart'
 
 export const Changelog = () => {
 
-  const [ruta,setRuta] = useState('sinmouse.mp4');
+  const [ruta,setRuta] = useState('sinmouse.webm');
   
   const handleVideo = () => {
-    if(ruta == 'sinmouse.mp4'){
-        setRuta('conmouse.mp4')
+    if(ruta == 'sinmouse.webm'){
+        setRuta('conmouse.webm')
     }else{
-      setRuta('sinmouse.mp4')
+      setRuta('sinmouse.webm')
     }
   }
 
