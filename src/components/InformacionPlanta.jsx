@@ -19,7 +19,7 @@ export const InformacionPlanta = ({planta,id}) => {
     }
   }
   return (
-    <div className='w-96 bg-white p-5 mt-5 rounded-lg flex flex-col gap-5'>
+    <div className='w-2/5 bg-white p-5 mt-5 rounded-lg flex flex-col gap-5 justify-between'>
         <h1 className='font-semibold max-lg:text-sm text-center'>Información de la planta</h1>
         <div className='flex gap-10 items-center'>
             <div className='flex flex-col gap-2'>

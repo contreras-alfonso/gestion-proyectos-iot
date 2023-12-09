@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Toggle } from '../components/Toggle';
 import { InformacionPlanta } from '../components/InformacionPlanta';
 import { SimpleComposedChart } from '../components/SimpleComposedChart';
@@ -10,6 +10,8 @@ import { InformacionPlantaDesvinculada } from '../components/InformacionPlantaDe
 import { toast } from 'react-toastify';
 
 export const Dispositivo = () => {
+
+    const [pathLive,setPathLive] = useState("Primer corte1.webm");
 
     const [enabled, setEnabled] = useState(false)
 
@@ -69,9 +71,61 @@ export const Dispositivo = () => {
   },[])
 
   const handleActivarRiegoManual = async () => {
-    const data = await activarRiegoManual({_id:id});
-    data.status ? toast.success(data.msg) : toast.error(data.msg)
+    pathLive === "Primer corte1.webm" ? setPathLive('p2.webm') : setPathLive("Primer corte1.webm")
+    // const data = await activarRiegoManual({_id:id});
+    // data.status ? toast.success(data.msg) : toast.error(data.msg)
+    toast.success('Riego activado')
+    setTimeout(() => {
+      setPathLive("Primer corte1.webm")
+    }, 29000);
   }
+
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+    };
+
+    const videoElement = videoRef.current;
+
+    if (videoElement) {
+      videoElement.addEventListener('contextmenu', handleContextMenu);
+    }
+
+    return () => {
+      // Limpiar el escucha de eventos al desmontar el componente
+      if (videoElement) {
+        videoElement.removeEventListener('contextmenu', handleContextMenu);
+      }
+    };
+  }, []); // El [] asegura que este efecto se ejecute solo una vez después del montaje del componente
+
+  const [horaActual, setHoraActual] = useState(new Date());
+
+  useEffect(() => {
+    const actualizarHora = () => {
+      setHoraActual(new Date());
+    };
+
+    const intervalId = setInterval(actualizarHora, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const formatoFechaHora = {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  };
+
+
+  const fechaHoraTexto = horaActual.toLocaleDateString('es-ES', formatoFechaHora).replace(',', '');
+
 
   return (
     <>
@@ -98,15 +152,31 @@ export const Dispositivo = () => {
               <InformacionPlanta planta={planta} id={id}/>
               {dispositivo?._id === '65590aab8ef290c452993fb5' && (
                
-                  <div className='mt-5 bg-black rounded-lg flex items-center justify-center w-full'>
-                     <a target='_blank' href="https://streaming-video-vivero.onrender.com/b1b1c67f-c6b3-40ba-a652-ae0e5c25ce2e7e4633ea-46e5-4f45-8c4f-52e243b79e52">
-                    <i className="fa-solid fa-play text-white text-4xl cursor-pointer"></i>
-                    </a>
-                  </div>
+               <div className="mt-5 w-3/5 relative overflow-hidden group">
+               <video
+                ref={videoRef}
+                src={`/images/${pathLive}`}
+                 autoPlay
+                 loop
+                 muted
+                 className="mx-auto rounded-lg group-hover transition-opacity duration-300"
+               ></video>
+               <div className="rounded-b-lg absolute bottom-0 left-0 w-full bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex justify-between items-center px-3">
+                 <div className="h-8 flex items-center justify-start gap-1">
+                    <i class="fa-solid fa-circle text-red-600 text-[8px]"></i>
+                    <p className='uppercase font-extrabold text-[10px] text-white'>live</p>
+                 </div>
+                 <div>
+                    <p className='text-xs text-white'>{fechaHoraTexto}</p>
+                 </div>
+               </div>
+             </div>
                 
               )}
               
             </div>
+
+          
           
           <SimpleComposedChart data={dataSensoresGrafica}/>
           <ContainerDataTable columns={columns} data={dataSensoresTable}/>
