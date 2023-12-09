@@ -2,7 +2,7 @@ import React from 'react'
 import useDispositivos from '../hooks/useDispositivos'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
+ 
 export const InformacionPlanta = ({planta,id}) => {
   // const {especie,temperatura,humedad,descripcion,pathIcono} = planta;
   const navigate = useNavigate();
@@ -19,15 +19,15 @@ export const InformacionPlanta = ({planta,id}) => {
     }
   }
   return (
-    <div className='w-2/5 bg-white p-5 mt-5 rounded-lg flex flex-col gap-5 justify-between'>
+    <div className='w-2/5 bg-white p-5 pt-10 mt-5 rounded-lg flex flex-col gap-5 justify-between'>
         <h1 className='font-semibold max-lg:text-sm text-center'>Información de la planta</h1>
-        <div className='flex gap-10 items-center'>
+        <div className='max-2xl:flex-row flex-col flex gap-10 items-center'>
             <div className='flex flex-col gap-2'>
                 <p className='text-sm font-semibold'>Nombre: <span className='font-normal'>{planta?.nombre}</span></p>
                 <p className='text-sm font-semibold'>Especie: <span className='font-normal'>{planta?.especie}</span></p>
-                <p className='text-sm font-semibold'>Humedad: <span className='font-normal'>{planta?.humedad}</span></p>
-                <p className='text-sm font-semibold'>Temperatura: <span className='font-normal'>{planta?.temperatura}</span></p>
-                <p className='text-sm font-semibold'>Suelo: <span className='font-normal'>{planta?.humedad}</span></p>
+                <p className='text-sm font-semibold'>Humedad del suelo: <span className='font-normal'>{planta?.humedad}</span></p>
+                <p className='text-sm font-semibold'>Temperatura: <span className='font-normal'>{planta?.temperatura}°C</span></p>
+    
             </div>
             <img className='w-16' src={`${import.meta.env.VITE_RUTA_BACKEND}/${planta?.pathIcono}`} alt="" />
         </div>

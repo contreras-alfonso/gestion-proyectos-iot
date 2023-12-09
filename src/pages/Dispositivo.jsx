@@ -71,35 +71,20 @@ export const Dispositivo = () => {
   },[])
 
   const handleActivarRiegoManual = async () => {
-    pathLive === "Primer corte1.webm" ? setPathLive('p2.webm') : setPathLive("Primer corte1.webm")
-    // const data = await activarRiegoManual({_id:id});
-    // data.status ? toast.success(data.msg) : toast.error(data.msg)
-    toast.success('Riego activado')
+    const data = await activarRiegoManual({_id:id});
+    if(!data.status){
+      return toast.error(data.msg)
+    }
+    toast.success(data.msg)  
+
+    setTimeout(() => {
+      pathLive === "Primer corte1.webm" ? setPathLive('p2.webm') : setPathLive("Primer corte1.webm")
+    }, 4000);
+    
     setTimeout(() => {
       setPathLive("Primer corte1.webm")
-    }, 29000);
+    }, 31000);
   }
-
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    const handleContextMenu = (e) => {
-      e.preventDefault();
-    };
-
-    const videoElement = videoRef.current;
-
-    if (videoElement) {
-      videoElement.addEventListener('contextmenu', handleContextMenu);
-    }
-
-    return () => {
-      // Limpiar el escucha de eventos al desmontar el componente
-      if (videoElement) {
-        videoElement.removeEventListener('contextmenu', handleContextMenu);
-      }
-    };
-  }, []); // El [] asegura que este efecto se ejecute solo una vez después del montaje del componente
 
   const [horaActual, setHoraActual] = useState(new Date());
 
@@ -154,20 +139,22 @@ export const Dispositivo = () => {
                
                <div className="mt-5 w-3/5 relative overflow-hidden group">
                <video
-                ref={videoRef}
                 src={`/images/${pathLive}`}
                  autoPlay
                  loop
                  muted
-                 className="mx-auto rounded-lg group-hover transition-opacity duration-300"
+                 className="max-lg:h-[310px] max-xl:h-[314px] max-2xl:h-[388px] w-full object-center object-cover mx-auto rounded-lg group-hover transition-opacity duration-300"
                ></video>
-               <div className="rounded-b-lg absolute bottom-0 left-0 w-full bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex justify-between items-center px-3">
-                 <div className="h-8 flex items-center justify-start gap-1">
-                    <i class="fa-solid fa-circle text-red-600 text-[8px]"></i>
-                    <p className='uppercase font-extrabold text-[10px] text-white'>live</p>
-                 </div>
-                 <div>
-                    <p className='text-xs text-white'>{fechaHoraTexto}</p>
+               <div className=" absolute bottom-0 top-0 w-full  opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end">
+                  
+                 <div className='bg-black/20 flex justify-between items-center w-full px-3 select-none rounded-b-lg'>
+                  <div className="h-8 flex items-center justify-start gap-1">
+                      <i class="fa-solid fa-fade fa-circle text-red-600 text-[8px]"></i>
+                      <p className='uppercase font-extrabold text-[10px] text-white'>live</p>
+                  </div>
+                  <div>
+                      <p className='text-xs text-white'>{fechaHoraTexto}</p>
+                  </div>
                  </div>
                </div>
              </div>
