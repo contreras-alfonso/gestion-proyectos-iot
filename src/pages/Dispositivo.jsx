@@ -71,6 +71,9 @@ export const Dispositivo = () => {
   },[])
 
   const handleActivarRiegoManual = async () => {
+    toast.success("Riego activado")
+    pathLive === "Primer corte1.webm" ? setPathLive('p2.webm') : setPathLive("Primer corte1.webm")
+    return
     const data = await activarRiegoManual({_id:id});
     if(!data.status){
       return toast.error(data.msg)
