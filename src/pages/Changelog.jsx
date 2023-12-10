@@ -9,16 +9,16 @@ export const Changelog = () => {
   const [videosLoaded, setVideosLoaded] = useState(false);
 
   const handleVideo = () => {
-    toast.success('Riego activadoaqwe');
+    toast.success('Riego activado');
 
     if (visibleVideo === 1) {
       setVisibleVideo(2);
-      video2Ref.current.play();
-      video1Ref.current.pause();
+      video2Ref.current?.play();
+      video1Ref.current?.pause();
     } else {
       setVisibleVideo(1);
-      video1Ref.current.play();
-      video2Ref.current.pause();
+      video1Ref.current?.play();
+      video2Ref.current?.pause();
     }
   };
 
@@ -27,10 +27,10 @@ export const Changelog = () => {
       try {
         // Cargar ambos videos en paralelo
         await Promise.all([
-          video1Ref.current.play(),
-          video1Ref.current.pause(),
-          video2Ref.current.play(),
-          video2Ref.current.pause(),
+          video1Ref.current?.play(),
+          video1Ref.current?.pause(),
+          video2Ref.current?.play(),
+          video2Ref.current?.pause(),
         ]);
 
         setVideosLoaded(true);
