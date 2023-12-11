@@ -51,7 +51,7 @@ export const Changelog = () => {
         <div className='mt-5 w-3/5 relative overflow-hidden group'>
           <video
             ref={video1Ref}
-            src={`/images/conmouse2.mp4`}
+            src={`/images/Primer corte.mp4`}
             autoPlay
             loop
             muted
@@ -61,7 +61,7 @@ export const Changelog = () => {
           ></video>
           <video
             ref={video2Ref}
-            src={`/images/sinmouse2.mp4`}
+            src={`/images/p2.mp4`}
             autoPlay
             loop
             muted
