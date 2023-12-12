@@ -176,7 +176,7 @@ export const Dispositivo = () => {
               <div className="bg-black rounded-lg mt-5 w-3/5 relative overflow-hidden group">
                 <video
                   ref={video1Ref}
-                  src={`/images/v1.mp4`}
+                  src={`/images/v1.webm`}
                   autoPlay
                   loop
                   muted
@@ -185,7 +185,7 @@ export const Dispositivo = () => {
                 ></video>
                 <video
                   ref={video2Ref}
-                  src={`/images/v2.mp4`}
+                  src={`/images/v2.webm`}
                   autoPlay
                   loop
                   muted
