@@ -48,14 +48,14 @@ export const Changelog = () => {
         button
       </button>
       {videosLoaded && (
-        <div className='mt-5 w-3/5 relative overflow-hidden group'>
+        <div className='bg-black mt-5 w-3/5 relative overflow-hidden group'>
           <video
             ref={video1Ref}
             src={`/images/v1.mp4`}
             autoPlay
             loop
             muted
-            className={`max-lg:h-[310px] max-xl:h-[314px] max-2xl:h-[388px] w-full object-center object-cover mx-auto rounded-lg group-hover transition-opacity duration-300 ${
+            className={`bg-black max-lg:h-[310px] max-xl:h-[314px] max-2xl:h-[388px] w-full object-center object-cover mx-auto rounded-lg group-hover transition-opacity duration-300 ${
               visibleVideo === 1 ? 'block' : 'hidden'
             }`}
           ></video>
@@ -65,7 +65,7 @@ export const Changelog = () => {
             autoPlay
             loop
             muted
-            className={`max-lg:h-[310px] max-xl:h-[314px] max-2xl:h-[388px] w-full object-center object-cover mx-auto rounded-lg group-hover transition-opacity duration-300 ${
+            className={`bg-black max-lg:h-[310px] max-xl:h-[314px] max-2xl:h-[388px] w-full object-center object-cover mx-auto rounded-lg group-hover transition-opacity duration-300 ${
               visibleVideo === 2 ? 'block' : 'hidden'
             }`}
           ></video>

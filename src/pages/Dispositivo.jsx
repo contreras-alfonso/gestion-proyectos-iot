@@ -76,12 +76,12 @@ export const Dispositivo = () => {
 
   const handleActivarRiegoManual = async () => {
 
-    const data = await activarRiegoManual({_id:id});
-    if(!data.status){
-      return toast.error(data.msg)
-    }
-    toast.success(data.msg)  
-    // toast.success("Riego activado")
+    // const data = await activarRiegoManual({_id:id});
+    // if(!data.status){
+    //   return toast.error(data.msg)
+    // }
+    // toast.success(data.msg)  
+    toast.success("Riego activado")
 
     setTimeout(() => {
       if (visibleVideo === 1) {
@@ -99,7 +99,7 @@ export const Dispositivo = () => {
       setVisibleVideo(1);
       video1Ref.current?.play();
       video2Ref.current?.pause();
-    }, 31000);
+    }, 78000);
   }
 
   useEffect(() => {
@@ -173,23 +173,23 @@ export const Dispositivo = () => {
             <InformacionPlanta planta={planta} id={id} />
             {dispositivo?._id === '65590aab8ef290c452993fb5' && (
 
-              <div className="mt-5 w-3/5 relative overflow-hidden group">
+              <div className="bg-black rounded-lg mt-5 w-3/5 relative overflow-hidden group">
                 <video
                   ref={video1Ref}
-                  src={`/images/Primer corte.mp4`}
+                  src={`/images/v1.mp4`}
                   autoPlay
                   loop
                   muted
-                  className={`max-lg:h-[310px] max-xl:h-[314px] max-2xl:h-[388px] w-full object-center object-cover mx-auto rounded-lg group-hover transition-opacity duration-300 ${visibleVideo === 1 ? 'block' : 'hidden'
+                  className={`bg-black max-lg:h-[310px] max-xl:h-[314px] max-2xl:h-[388px] w-full object-center object-cover mx-auto rounded-lg group-hover transition-opacity duration-300 ${visibleVideo === 1 ? 'block' : 'hidden'
                     }`}
                 ></video>
                 <video
                   ref={video2Ref}
-                  src={`/images/p2.mp4`}
+                  src={`/images/v2.mp4`}
                   autoPlay
                   loop
                   muted
-                  className={`max-lg:h-[310px] max-xl:h-[314px] max-2xl:h-[388px] w-full object-center object-cover mx-auto rounded-lg group-hover transition-opacity duration-300 ${visibleVideo === 2 ? 'block' : 'hidden'
+                  className={`bg-black max-lg:h-[310px] max-xl:h-[314px] max-2xl:h-[388px] w-full object-center object-cover mx-auto rounded-lg group-hover transition-opacity duration-300 ${visibleVideo === 2 ? 'block' : 'hidden'
                     }`}
                 ></video>
                 <div className=" absolute bottom-0 top-0 w-full  transition-opacity duration-300  flex items-end">
