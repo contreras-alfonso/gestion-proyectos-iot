@@ -76,12 +76,12 @@ export const Dispositivo = () => {
 
   const handleActivarRiegoManual = async () => {
 
-    // const data = await activarRiegoManual({_id:id});
-    // if(!data.status){
-    //   return toast.error(data.msg)
-    // }
-    // toast.success(data.msg)  
-    toast.success("Riego activado")
+    const data = await activarRiegoManual({_id:id});
+    if(!data.status){
+      return toast.error(data.msg)
+    }
+    toast.success(data.msg)  
+    // toast.success("Riego activado")
 
     setTimeout(() => {
       if (visibleVideo === 1) {
@@ -196,7 +196,7 @@ export const Dispositivo = () => {
 
                   <div className='bg-black/20 flex justify-between items-center w-full px-3 select-none rounded-b-lg'>
                     <div className="h-8 flex items-center justify-start gap-1">
-                      <i class="fa-solid fa-fade fa-circle text-red-600 text-[8px]"></i>
+                      <i className="fa-solid fa-fade fa-circle text-red-600 text-[8px]"></i>
                       <p className='uppercase font-extrabold text-[10px] text-white'>live</p>
                     </div>
                     <div>

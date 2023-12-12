@@ -11,7 +11,17 @@ export const LayoutPrivado = () => {
   const {verificarLogin,user,setUser,cargando} = useUser();
   const [listaAlertas,setListaAlertas] = useState(false);
   const [fixedNavegacion,setFixedNavegacion] = useState(false);
-  const [fixed,setFixed] = useState(false);
+  const [ff,setFf] = useState(false);
+
+  const verificarScroll = () => {
+    console.log('wqeqw')
+    if(window.scrollY>100){
+      setFf(true);
+      return;
+    }
+    setFf(false);
+  }
+
 
   useEffect(()=>{
     const validarLogin = async () => {
@@ -19,7 +29,7 @@ export const LayoutPrivado = () => {
       setUser(data);
     }
     validarLogin();
-
+    window.addEventListener('scroll',verificarScroll);
   },[])
 
 
@@ -39,15 +49,8 @@ export const LayoutPrivado = () => {
       
     }
 
-    const verificarScroll = () => {
-      if(window.scrollY>100){
-        setFixed(true);
-        return;
-      }
-      setFixed(false);
-    }
-  
-    window.addEventListener('scroll',verificarScroll);
+
+
 
   return (
     <>
@@ -58,7 +61,7 @@ export const LayoutPrivado = () => {
       
               <div className='w-full h-screen overflow-y-scroll p-10'> 
 
-                  <div className={`hidden max-lg:flex bg-white rounded-lg px-5 py-3 mb-5  gap-5 justify-end items-center ${fixed && 'fixed right-5 left-5 top-1 z-30 shadow-lg'}`}>
+                  <div className={`hidden max-lg:flex bg-white rounded-lg px-5 py-3 mb-5  gap-5 justify-end items-center ${ff && 'fixed right-5 left-5 top-1 z-30 shadow-lg'}`}>
                     <i onClick={()=>{setListaAlertas(true)}} className="fa-regular fa-bell text-gray-600 cursor-pointer hover:bg-slate-100 hover:rounded-full p-2 hover:shadow"></i>
                     <i onClick={()=>{setFixedNavegacion(true)}} className="fa-solid fa-bars text-gray-600 cursor-pointer hover:bg-slate-100 hover:rounded-full p-2 hover:shadow"></i>
                   </div>
