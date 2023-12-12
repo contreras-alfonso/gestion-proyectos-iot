@@ -65,7 +65,7 @@ export const Changelog = () => {
             autoPlay
             loop
             muted
-            className={`bg-black max-lg:h-[310px] max-xl:h-[314px] max-2xl:h-[388px] w-full object-center object-cover mx-auto rounded-lg group-hover transition-opacity duration-300 ${
+            className={`bg-black/95 max-lg:h-[310px] max-xl:h-[314px] max-2xl:h-[388px] w-full object-center object-cover mx-auto rounded-lg group-hover transition-opacity duration-300 ${
               visibleVideo === 2 ? 'block' : 'hidden'
             }`}
           ></video>
