@@ -176,7 +176,7 @@ export const Dispositivo = () => {
               <div className="bg-black rounded-lg mt-5 w-3/5 relative overflow-hidden group">
                 <video
                   ref={video1Ref}
-                  src={`/b99900a9-f6cd-4066-a3c8-617b2ef539ac/6249b79b-bf3d-457f-86b5-0d9563c4fd89.webm`}
+                  src={`/b99900a9-f6cd-4066-a3c8-617b2ef539ac/v16d4923e9-69ff-4ab9-9330-1d72b16486ae.webm`}
                   autoPlay
                   loop
                   muted
@@ -185,7 +185,7 @@ export const Dispositivo = () => {
                 ></video>
                 <video
                   ref={video2Ref}
-                  src={`/b99900a9-f6cd-4066-a3c8-617b2ef539ac/dd7e73d4-cd05-494a-ab0a-a24a7b0515f3.webm`}
+                  src={`/b99900a9-f6cd-4066-a3c8-617b2ef539ac/v26fd03c10-0039-4d38-a55f-39ce24816ea0.webm`}
                   autoPlay
                   loop
                   muted
