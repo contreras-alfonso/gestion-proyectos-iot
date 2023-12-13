@@ -99,7 +99,7 @@ export const Dispositivo = () => {
       setVisibleVideo(1);
       video1Ref.current?.play();
       video2Ref.current?.pause();
-    }, 78000);
+    }, 63000);
   }
 
   useEffect(() => {
@@ -176,7 +176,7 @@ export const Dispositivo = () => {
               <div className="bg-black rounded-lg mt-5 w-3/5 relative overflow-hidden group">
                 <video
                   ref={video1Ref}
-                  src={`/images/v1.webm`}
+                  src={`/b99900a9-f6cd-4066-a3c8-617b2ef539ac/6249b79b-bf3d-457f-86b5-0d9563c4fd89.webm`}
                   autoPlay
                   loop
                   muted
@@ -185,14 +185,14 @@ export const Dispositivo = () => {
                 ></video>
                 <video
                   ref={video2Ref}
-                  src={`/images/v2.webm`}
+                  src={`/b99900a9-f6cd-4066-a3c8-617b2ef539ac/dd7e73d4-cd05-494a-ab0a-a24a7b0515f3.webm`}
                   autoPlay
                   loop
                   muted
                   className={`bg-black max-lg:h-[310px] max-xl:h-[314px] max-2xl:h-[388px] w-full object-center object-cover mx-auto rounded-lg group-hover transition-opacity duration-300 ${visibleVideo === 2 ? 'block' : 'hidden'
                     }`}
                 ></video>
-                <div className=" absolute bottom-0 top-0 w-full  transition-opacity duration-300  flex items-end">
+                <div className=" absolute bottom-0 top-0 w-full  opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end">
 
                   <div className='bg-black/20 flex justify-between items-center w-full px-3 select-none rounded-b-lg'>
                     <div className="h-8 flex items-center justify-start gap-1">

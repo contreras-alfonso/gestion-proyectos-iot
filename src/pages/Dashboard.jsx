@@ -53,7 +53,7 @@ export const Dashboard = () => {
             numberMax: temperatura,
             simbol: '°C',
             bgColor: 'bg-cyan-100',
-            icon: <i class="fa-regular fa-temperature-half text-cyan-500"></i>,
+            icon: <i className="fa-regular fa-temperature-half text-cyan-500"></i>,
         },
         {
             text: 'Reportes totales',
