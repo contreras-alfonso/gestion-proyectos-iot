@@ -188,7 +188,7 @@ export const Dispositivo = () => {
           </div>
 
           <SimpleComposedChart data={dataSensoresGrafica} />
-          {/* <ContainerDataTable columns={columns} data={dataSensoresTable} /> */}
+          <ContainerDataTable columns={columns} data={dataSensoresTable} />
         </div>
       ) :
 
