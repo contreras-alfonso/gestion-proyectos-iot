@@ -1,33 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import io from 'socket.io-client';
 import { Toggle } from '../components/Toggle';
 import { InformacionPlanta } from '../components/InformacionPlanta';
 import { SimpleComposedChart } from '../components/SimpleComposedChart';
 import { ContainerDataTable } from '../components/ContainerDataTable';
 import { useParams } from 'react-router-dom';
 import useDispositivos from '../hooks/useDispositivos';
-import { Skeleton } from '../components/Skeleton';
 import { InformacionPlantaDesvinculada } from '../components/InformacionPlantaDesvinculada';
 import { toast } from 'react-toastify';
 
 export const Dispositivo = () => {
-
-  const video1Ref = useRef(null);
-  const video2Ref = useRef(null);
-
-  const [visibleVideo, setVisibleVideo] = useState(1);
-  const [videosLoaded, setVideosLoaded] = useState(false);
-
+  const [pathVideo, setPathVideo] = useState(`${import.meta.env.VITE_RUTA_BACKEND}/4a39af0e-5a94-4b46-bc7e-ef8f92608cc7/c1.webm`);
+  const [socketInstance, setSocketInstance] = useState(null);
   const [enabled, setEnabled] = useState(false)
 
   const { id } = useParams();
-
   const { dispositivo, obtenerDispositivo, activarRiegoManual } = useDispositivos();
+  const { numeroDispositivo, planta, estado } = dispositivo;
 
-  const { _id, nombre, numeroDispositivo, planta, estado } = dispositivo
-
-  useEffect(() => {
-    obtenerDispositivo(id);
-  }, [])
+  
 
   useEffect(() => {
     if (dispositivo._id) {
@@ -59,68 +50,24 @@ export const Dispositivo = () => {
       name: 'Fecha',
       selector: row => row.fechaYhora,
     },
-
   ];
 
-  useEffect(() => {
-    const getUsuario = async () => {
-      const response = await fetch(`${import.meta.env.VITE_RUTA_BACKEND}/sensores/getAll/${id}`);
-      const data = await response.json();
-      setDataSensoresGrafica(data.dataSensoresGraficaMod);
-      setDataSensoresTable(data.dataSensoresTableMod);
 
-    }
-    getUsuario();
-
-  }, [])
 
   const handleActivarRiegoManual = async () => {
+    toast.success("Riego activado");
 
-    const data = await activarRiegoManual({_id:id});
-    if(!data.status){
-      return toast.error(data.msg)
+    // Emitir evento al servidor para activar el riego
+    if (socketInstance) {
+      socketInstance.emit('activarRiego');
     }
-    toast.success(data.msg)  
-    // toast.success("Riego activado")
 
-    setTimeout(() => {
-      if (visibleVideo === 1) {
-        setVisibleVideo(2);
-        video2Ref.current?.play();
-        video1Ref.current?.pause();
-      } else {
-        setVisibleVideo(1);
-        video1Ref.current?.play();
-        video2Ref.current?.pause();
-      }
-    }, 7000);
-
-    setTimeout(() => {
-      setVisibleVideo(1);
-      video1Ref.current?.play();
-      video2Ref.current?.pause();
-    }, 63000);
+    if (pathVideo === `${import.meta.env.VITE_RUTA_BACKEND}/4a39af0e-5a94-4b46-bc7e-ef8f92608cc7/c1.webm`) {
+      setPathVideo(`${import.meta.env.VITE_RUTA_BACKEND}/4a39af0e-5a94-4b46-bc7e-ef8f92608cc7/c2.webm`);
+    } else {
+      setPathVideo(`${import.meta.env.VITE_RUTA_BACKEND}/4a39af0e-5a94-4b46-bc7e-ef8f92608cc7/c1.webm`);
+    }
   }
-
-  useEffect(() => {
-    const loadVideos = async () => {
-      try {
-        // Cargar ambos videos en paralelo
-        await Promise.all([
-          video1Ref.current?.play(),
-          video1Ref.current?.pause(),
-          video2Ref.current?.play(),
-          video2Ref.current?.pause(),
-        ]);
-
-        setVideosLoaded(true);
-      } catch (error) {
-        console.error('Error loading videos:', error);
-      }
-    };
-
-    loadVideos();
-  }, []);
 
   const [horaActual, setHoraActual] = useState(new Date());
 
@@ -144,9 +91,50 @@ export const Dispositivo = () => {
     hour12: false,
   };
 
-
   const fechaHoraTexto = horaActual.toLocaleDateString('es-ES', formatoFechaHora).replace(',', '');
 
+  useEffect(() => {
+  
+    const socket = io('http://localhost:3000');
+    setSocketInstance(socket);
+  
+    // Manejar eventos desde el servidor
+    socket.on('cambiarVideo', () => {
+      // Cambiar al primer video
+      if (pathVideo === `${import.meta.env.VITE_RUTA_BACKEND}/4a39af0e-5a94-4b46-bc7e-ef8f92608cc7/c1.webm`) {
+        setPathVideo(`${import.meta.env.VITE_RUTA_BACKEND}/4a39af0e-5a94-4b46-bc7e-ef8f92608cc7/c2.webm`);
+      } else {
+        setPathVideo(`${import.meta.env.VITE_RUTA_BACKEND}/4a39af0e-5a94-4b46-bc7e-ef8f92608cc7/c1.webm`);
+      }
+    });
+  
+    // Manejar eventos de conexión y desconexión
+    socket.on('connect', () => {
+      console.log('Conexión establecida con éxito:', socket.id);
+    });
+  
+    socket.on('disconnect', () => {
+      console.log('Desconectado del servidor de Socket.io');
+    });
+  
+    return () => {
+      // Desconectar el socket al desmontar el componente
+      socket.disconnect();
+    };
+  }, [id]);
+  // Obtener datos iniciales
+  useEffect(() => {
+    obtenerDispositivo(id);
+    
+    const getUsuario = async () => {
+      const response = await fetch(`${import.meta.env.VITE_RUTA_BACKEND}/sensores/getAll/${id}`);
+      const data = await response.json();
+      setDataSensoresGrafica(data.dataSensoresGraficaMod);
+      setDataSensoresTable(data.dataSensoresTableMod);
+    };
+
+    getUsuario();
+  }, [id, obtenerDispositivo]);
 
   return (
     <>
@@ -175,22 +163,11 @@ export const Dispositivo = () => {
 
               <div className="bg-black rounded-lg mt-5 w-3/5 relative overflow-hidden group">
                 <video
-                  ref={video1Ref}
-                  src={`/b99900a9-f6cd-4066-a3c8-617b2ef539ac/v16d4923e9-69ff-4ab9-9330-1d72b16486ae.webm`}
+                  src={pathVideo}
                   autoPlay
                   loop
                   muted
-                  className={`bg-black max-lg:h-[310px] max-xl:h-[314px] max-2xl:h-[388px] w-full object-center object-cover mx-auto rounded-lg group-hover transition-opacity duration-300 ${visibleVideo === 1 ? 'block' : 'hidden'
-                    }`}
-                ></video>
-                <video
-                  ref={video2Ref}
-                  src={`/b99900a9-f6cd-4066-a3c8-617b2ef539ac/v26fd03c10-0039-4d38-a55f-39ce24816ea0.webm`}
-                  autoPlay
-                  loop
-                  muted
-                  className={`bg-black max-lg:h-[310px] max-xl:h-[314px] max-2xl:h-[388px] w-full object-center object-cover mx-auto rounded-lg group-hover transition-opacity duration-300 ${visibleVideo === 2 ? 'block' : 'hidden'
-                    }`}
+                  className={`bg-black max-lg:h-[310px] max-xl:h-[314px] max-2xl:h-[388px] w-full object-center object-cover mx-auto rounded-lg group-hover transition-opacity duration-300`}
                 ></video>
                 <div className=" absolute bottom-0 top-0 w-full  opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end">
 
@@ -210,10 +187,8 @@ export const Dispositivo = () => {
 
           </div>
 
-
-
           <SimpleComposedChart data={dataSensoresGrafica} />
-          <ContainerDataTable columns={columns} data={dataSensoresTable} />
+          {/* <ContainerDataTable columns={columns} data={dataSensoresTable} /> */}
         </div>
       ) :
 
@@ -235,5 +210,5 @@ export const Dispositivo = () => {
       }
 
     </>
-  )
-}
+  );
+};

@@ -5,18 +5,18 @@ import { toast } from 'react-toastify';
 
 export const Login = () => {
   const navigate = useNavigate();
-  const [user,setUser] = useState('');
-  const [password,setPassword] = useState('');
+  const [user,setUser] = useState('viveroplantasyflores@admin.com');
+  const [password,setPassword] = useState('alfonso159@');
 
   const {login} = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if([user,password].includes('')){
-
       toast.error('Todos los campos son obligatorios.');
       return;
     }
+
     const data = await login({user,password});
     if(!data.status){
       toast.error(data.msg)
