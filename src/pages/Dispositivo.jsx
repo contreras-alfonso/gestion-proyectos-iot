@@ -95,7 +95,7 @@ export const Dispositivo = () => {
 
   useEffect(() => {
   
-    const socket = io('http://localhost:3000');
+    const socket = io(`${import.meta.env.VITE_RUTA_BACKEND}`);
     setSocketInstance(socket);
   
     // Manejar eventos desde el servidor
