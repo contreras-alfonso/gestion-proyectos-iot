@@ -93,7 +93,7 @@ export const Dispositivo = () => {
         video1Ref.current?.play();
         video2Ref.current?.pause();
       }
-    }, 7000);
+    }, 4000);
 
     setTimeout(() => {
       setVisibleVideo(1);
